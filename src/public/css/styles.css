@@ -1,0 +1,23 @@
+:root {
+    --color-body: #CFDA40; 
+    --color-logo: #DCDC05;
+    --color-btn: #DCDC05;
+    --color-text: #000000;
+    --color-wallpaper: #222222;
+  }
+  
+  body {
+    background-color: var(--color-wallpaper);
+  }
+  
+  label{
+    width: 100%;
+  }
+  
+ .btn{
+    width: 100%;
+ }
+
+ .fi-icon{
+  color: black;
+ }
