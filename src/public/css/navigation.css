@@ -1,0 +1,7 @@
+.btn-outline-success{
+    color: var(--color-logo);
+}
+.btn-outline-success:hover{
+    color: var(--color-text);
+    background-color: var(--color-logo);
+}

@@ -39,6 +39,7 @@ app.use('/Mexico',require('./routes/links'));
 
 //Public
 app.use(express.static(path.join(__dirname,'public')));
+app.use(express.static(path.join(__dirname,'views/partials')));
 
 //Starting server
 app.listen(app.get('port'),()=>{
