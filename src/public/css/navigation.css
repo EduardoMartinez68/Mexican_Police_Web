@@ -5,3 +5,7 @@
     color: var(--color-text);
     background-color: var(--color-logo);
 }
+
+.bg-dark{
+    background-color: red;
+} 
