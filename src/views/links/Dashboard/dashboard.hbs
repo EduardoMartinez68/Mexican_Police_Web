@@ -14,7 +14,7 @@
                 
                     <div class="row">
                         <div class="col-lg-4 col-md-6 my-lg-0 my-3">
-                            <div class="box bg-white" onclick="nextWeb('report-global')">
+                            <div class="box bg-white" onclick="nextWeb('criminals')">
                                 <div class="d-flex align-items-center">
                                     <div
                                         class="rounded-circle mx-3 d-flex align-items-center justify-content-center pale-orange">
@@ -30,13 +30,13 @@
                         </div>
 
                         <div class="col-lg-4 col-md-6 my-lg-0 my-3">
-                            <div class="box bg-white" id="{{id}}" onclick="nextWeb(this.id+'/dish')">
+                            <div class="box bg-white" id="{{id}}" onclick="nextWeb('users')">
                                 <div class="d-flex align-items-center">
                                     <div
                                         class="rounded-circle mx-3 d-flex align-items-center justify-content-center pale-orange">
                                         <img src="https://cdn-icons-png.flaticon.com/512/1022/1022331.png" alt="">
                                     </div>
-                                    <div class="d-flex flex-column"> <b>Policias</b> <a href="report-global">
+                                    <div class="d-flex flex-column"> <b>Policias</b> <a href="users">
                                             <p class="text-muted">Agrega, edita, elimina o busca a un policia</p>
                                         </a> </div>
                                 </div>
@@ -44,13 +44,13 @@
                         </div>
 
                         <div class="col-lg-4 col-md-6 my-lg-0 my-3">
-                            <div class="box bg-white" onclick="nextWeb('report-global')">
+                            <div class="box bg-white" onclick="nextWeb('upload-criminals')">
                                 <div class="d-flex align-items-center">
                                     <div
                                         class="rounded-circle mx-3 d-flex align-items-center justify-content-center pale-orange">
                                         <img src="https://cdn-icons-png.flaticon.com/512/4409/4409421.png" alt="">
                                     </div>
-                                    <div class="d-flex flex-column"> <b>Subir criminales</b> <a href="report-global">
+                                    <div class="d-flex flex-column"> <b>Subir criminales</b> <a href="upload-criminals">
                                             <p class="text-muted">Sube un archivo xls de criminales</p>
                                         </a> </div>
                                 </div>
@@ -72,13 +72,13 @@
                         </div>
 
                         <div class="col-lg-4 col-md-6 my-lg-3 my-3">
-                            <div class="box bg-white" onclick="nextWeb('report-global')">
+                            <div class="box bg-white" onclick="nextWeb('upload-criminals')">
                                 <div class="d-flex align-items-center">
                                     <div
                                         class="rounded-circle mx-3 d-flex align-items-center justify-content-center pale-orange">
                                         <img src="https://cdn-icons-png.flaticon.com/512/4409/4409421.png" alt="">
                                     </div>
-                                    <div class="d-flex flex-column"> <b>Subir Robo sucursal</b> <a href="report-global">
+                                    <div class="d-flex flex-column"> <b>Subir Robo sucursal</b> <a href="upload-criminals">
                                             <p class="text-muted">Sube un archivo xls de los robos a sucursales</p>
                                             </a> 
                                     </div>
@@ -101,8 +101,6 @@
             window.location.href = "/fud/"+id+"/company-home";
         }
     </script>
-    <script src="/js/store/other.js"></script>
-    <script src="/js/menu.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="/js/report/company_report.js"></script>
 </body>

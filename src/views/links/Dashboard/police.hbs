@@ -1,0 +1,76 @@
+<head>
+    <link rel="stylesheet" href="/css/search.css">
+</head>
+<body>
+    <br>
+    <div class="container">
+        <div id="App" class="row pt-5">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <!--this is the search-->
+                        <table class="card-table">
+                            <thead>
+                                <tr>
+                                    <th class="td1"><input type="text" placeholder="Busca a un policia..." class="form-control" autofocus></th>
+                                    <th class="td2"><button class="btn-add" onclick="nextWeb(this.id+'/add-user')">+</button></th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    
+                    <div class="card-body card-information">
+                        <!--this add all the police-->
+                        {{#each saucers}}
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                    {{#if img}}
+                                        <img class="img-info" src="https://media.gq.com.mx/photos/649391b89ec62ce6c5b091a5/4:3/w_2668,h_2001,c_limit/mejores-hamburguesas.jpg">
+                                    {{else}}
+                                        <img class="img-info" src="https://cdn-icons-png.flaticon.com/512/1022/1022331.png">
+                                    {{/if}}
+                                    <strong>{{name}}</strong>
+                                </div>
+                            </div>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <!--This is the card for see the description of the product-->
+                <div class="card text-center mb-4">          
+                    <div class="card-body">
+                        <label>user</label><br>
+                        <img class="img-description" src="https://cdn-icons-png.flaticon.com/512/1022/1022331.png"><br>
+
+                        <strong>Name</strong>
+                        <br><br>
+
+                        <button class="card-btn-description"><i class="fi-item fi-rr-box-alt"></i>Edit</button>
+                        <button class="card-btn-description"><i class="fi-item fi-rr-time-past"></i>Delate</button>
+                        <br><br><br>
+                        <div class="card mb-4">
+                            <div class="card-bod">
+                            <table class="my-table-price">
+                                    <thead>
+                                        <tr>
+                                            <th><label>Email</label></th>
+                                            <th><label>Nivel</label></th>
+                                        </tr>
+                                        <tr>
+                                            <th><h6>user@Outlook.es</h6></th>
+                                            <th><h6>1</h6></th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/other.js"></script>
+</body>

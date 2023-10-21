@@ -1,7 +1,8 @@
-.btn-outline-success{
+.btn-outline-success-n{
     color: var(--color-logo);
+    background: transparent;
 }
-.btn-outline-success:hover{
+.btn-outline-success-n:hover{
     color: var(--color-text);
     background-color: var(--color-logo);
 }
