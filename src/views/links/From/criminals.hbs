@@ -1,0 +1,2350 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<head>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+<link href="/css/from/fromCriminals.css" rel="stylesheet">
+
+<style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+
+    .b-example-divider {
+      width: 100%;
+      height: 3rem;
+      background-color: rgba(0, 0, 0, .31);
+      border: solid rgba(0, 0, 0, .15);
+      border-width: 1px 0;
+      box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, 0), inset 0 .125em .5em rgba(0, 0, 0, .15);
+    }
+
+    .b-example-vr {
+      flex-shrink: 0;
+      width: 1.5rem;
+      height: 100vh;
+    }
+
+    .bi {
+      vertical-align: -.125em;
+      fill: currentColor;
+    }
+
+    .nav-scroller {
+      position: relative;
+      z-index: 2;
+      height: 2.75rem;
+      overflow-y: auto;
+    }
+
+    .nav-scroller .nav {
+      display: flex;
+      flex-wrap: nowrap;
+      padding-bottom: 1rem;
+      margin-top: -1px;
+      overflow-x: auto;
+      text-align: center;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .btn-bd-primary {
+      --bd-violet-bg: #712cf9;
+      --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+
+      --bs-btn-font-weight: 600;
+      --bs-btn-color: var(--bs-white);
+      --bs-btn-bg: var(--bd-violet-bg);
+      --bs-btn-border-color: var(--bd-violet-bg);
+      --bs-btn-hover-color: var(--bs-white);
+      --bs-btn-hover-bg: #6528e0;
+      --bs-btn-hover-border-color: #6528e0;
+      --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+      --bs-btn-active-color: var(--bs-btn-hover-color);
+      --bs-btn-active-bg: #5a23c8;
+      --bs-btn-active-border-color: #5a23c8;
+    }
+
+    .bd-mode-toggle {
+      z-index: 1500;
+    }
+
+    .bd-mode-toggle .dropdown-menu .active .bi {
+      display: block !important;
+    }
+  </style>
+
+</head>
+
+<body>
+
+    <main class="d-flex ms-1 me-1 bgcolor">
+
+        <!-- Sidebar -->
+        <aside class="bd-sidebar d-flex flex-column align-items-stretch flex-shrink-0 " style="width: 280px;">
+            
+            <a class="d-flex align-items-center pb-3 mb-3 link-body-emphasis text-decoration-none borde" aria-disabled="true">
+
+            <span class="fs-5 fw-semibold mt-3 ps-4 text-white">Navegacion</span>
+            
+            </a>
+
+          <ul class="list-group list-group-flush scrollarea">
+
+              <li class="mb-1 justify-content-center">
+
+                <div class="col-auto ">
+					<center>
+                  <button type="submit" class="btn btn-primar text-white" >Confirmar y Subir</button>
+						</center>
+                </div>
+  
+              </li>
+
+            <li class="mb-1">
+                <button class="link-body-emphasis btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed text-white" data-bs-toggle="collapse" data-bs-target="#per-collapse" aria-expanded="true">
+                Personales
+                </button>
+                <div class="collapse show" id="per-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+
+                    <li><a href="#DatPer" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Datos personales</a></li>
+                    <li><a href="#Dom" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Domicilio</a></li>
+                    <li><a href="#DatFam" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Datos familiares</a></li>
+                    <li><a href="#Ant" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Antropometricos</a></li>
+                    <li><a href="#Adi" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Adicciones</a></li>
+                    <li><a href="#Dis" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Discapacidad</a></li>
+                    <li><a href="#Ves" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Vestimenta</a></li>
+                    <li><button class="link-body-emphasis btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed ps-3 text-white" data-bs-toggle="collapse" data-bs-target="#t-collapse" aria-expanded="false">
+                        Tatuajes</button>
+                        <div class="collapse" id="t-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <li><a href="#TatCar" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Cara</a></li>
+                                <li><a href="#TatTro" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Tronco</a></li>
+                                <li><a href="#TatSup" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Superiores</a></li>
+                                <li><a href="#TatInf" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Inferiores</a></li>
+                            </ul>
+                        </div>
+                    </li>
+
+                </ul>
+                </div>
+            </li>
+
+            <li class="my-3"></li>
+
+            <li class="mb-1">
+                <button class="link-body-emphasis btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed text-white" data-bs-toggle="collapse" data-bs-target="#acc-collapse" aria-expanded="true">
+                Accion
+                </button>
+                <div class="collapse show" id="acc-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <li><a href="#ComRob" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Comercio robado</a></li>
+                    <li><a href="#Rob" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Robo</a></li>
+                    <li><a href="#Veh" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Vehiculo</a></li>
+                    <li><a href="#DatDet" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Datos de detencion</a></li>
+                    <li><a href="#ModOpe" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Modus Operandi</a></li>
+                    <li><a href="#Arm" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Arma</a></li>
+                    <li><a href="#RegDet" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Registro de detenciones</a></li>
+                </ul>
+                </div>
+            </li>
+
+            
+
+            </ul>
+        </aside>
+
+        
+
+        <!-- Separador -->
+        <aside class="bd-sidebar b-example-divider b-example-vr"></aside>
+
+        <!-- Form -->
+        <div>
+            <!--Top-->
+            <div>
+                <div class="bd-example my-3 ps-3">
+                    <nav id="navbar-example2" class="navbar px-3 bgcolor2">
+                        <a class="navbar-brand text-white" href="#">Captura</a>
+                        <ul class="nav nav-pills">
+
+                            <li class="nav-item pe-1">
+                               <a class="btn btn-primar active text-white" href="#HeadPer">Personales</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="btn btn-primar active" href="#HeadAcc">Accion</a>
+                            </li>
+                    </nav>
+
+                    <h2 class="ps-2 pb-3 pt-3 text-white" id="HeadPer">Personales</h2>
+
+                    <!-- La mayor parte de los IDs se van por tomar las primeras 3 letras del nombre: ejemplo Tipo de arma seria TipArm, en mayuscula cada palabra nueva, aun asi 
+                          checa que ids tiene cada uno de ellos, algunos se repetian entonces no son solamente 3 letras -->
+
+                    <!--Datos Personales-->
+                    <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example position-relative mt-2 overflow-hidden me-5 text-white" tabindex="0">
+                            <h4 id="DatPer" class="pb-3 text-white">Datos personales</h4>
+
+                                <form class="row g-2 text-white">
+
+                                    <div class="col-auto ps-5">
+                                      <input type="text" readonly class="form-control-plaintext text-white"value="Apellido Paterno">
+                                    </div>
+
+                                    <div class="col-auto">
+                                      <label for="ApePat" class="visually-hidden"></label>
+                                      <input type="text" class="form-control" id="ApePat">
+                                    </div>
+
+                                    <div class="col-auto ps-5">
+                                        <input type="text" readonly class="form-control-plaintext text-white" value="Apellido Materno">
+                                    </div>
+  
+                                    <div class="col-auto">
+                                        <label for="ApeMat" class="visually-hidden"></label>
+                                        <input type="text" class="form-control" id="ApeMat">
+                                    </div>
+
+                                </form>
+
+                                <form class="row g-2 pt-3">
+
+                                    <div class="col-auto ps-5">
+                                      <input type="text" readonly class="form-control-plaintext text-white"value="Nombre 1">
+                                    </div>
+
+                                    <div class="col-auto">
+                                      <label for="Nom1" class="visually-hidden"></label>
+                                      <input type="text" class="form-control" id="Nom1">
+                                    </div>
+
+                                    <div class="col-auto ps-5">
+                                        <input type="text" readonly class="form-control-plaintext text-white" value="Nombre 2">
+                                    </div>
+  
+                                    <div class="col-auto">
+                                        <label for="Nom2" class="visually-hidden"></label>
+                                        <input type="text" class="form-control" id="Nom2">
+                                    </div>
+
+                                </form>
+
+                                <form class="row g-2 pt-3">
+
+                                    <div class="col-auto ps-5">
+                                      <input type="text" readonly class="form-control-plaintext text-white"value="Alias">
+                                    </div>
+
+                                    <div class="col-auto">
+                                      <label for="Alias" class="visually-hidden"></label>
+                                      <input type="text" class="form-control" id="Alias">
+                                    </div>
+
+                                    <div class="col-auto ps-5">
+                                        <input type="text" readonly class="form-control-plaintext text-white" value="Fecha de Nacimiento">
+                                    </div>
+  
+                                    <div class="col-auto">
+                                        <label for="FecNac" class="visually-hidden"></label>
+                                        <input type="text" class="form-control" id="FecNac">
+                                    </div>
+
+                                </form>
+
+                                <form class="row g-2 pt-3">
+
+                                    <div class="col-auto ps-5">
+                                      <input type="text" readonly class="form-control-plaintext text-white"value="Edad">
+                                    </div>
+
+                                    <div class="col-auto">
+                                      <label for="Eda" class="visually-hidden"></label>
+                                      <input type="text" class="form-control" id="Eda">
+                                    </div>
+
+                                    <div class="col-auto ps-5">
+                                        <input type="text" readonly class="form-control-plaintext text-white"value="Ocupacion">
+                                      </div>
+  
+                                      <div class="col-auto">
+                                        <label for="Ocu" class="visually-hidden"></label>
+                                        <input type="text" class="form-control" id="Ocu">
+                                      </div>
+
+                                </form>
+
+                                <form class="row g-2 pt-3">
+
+                                    <div class="col-auto ps-5">
+                                        <input type="text" readonly class="form-control-plaintext text-white" value="Sexo">
+                                    </div>
+    
+                                    <div class="form-check col-auto">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="SexHom">
+                                        <label class="form-check-label" for="SexHom">
+                                          Hombre <br>
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="SexMuj">
+                                        <label class="form-check-label" for="SexMuj">
+                                          Mujer
+                                        </label>
+                                    </div>
+
+                                </form>
+
+                    </div>
+                    <!--Domicilio-->
+                    <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example position-relative mt-2 overflow-hidden me-5" tabindex="0">
+                        <h4 id="Dom" class="pb-3 text-white">Domicilio</h4>
+
+                            <form class="row g-2">
+
+                                <div class="col-auto ps-5">
+                                  <input type="text" readonly class="form-control-plaintext text-white"value="Calle">
+                                </div>
+
+                                <div class="col-auto">
+                                  <label for="Cal" class="visually-hidden"></label>
+                                  <input type="text" class="form-control" id="Cal">
+                                </div>
+
+                                <div class="col-auto ps-5">
+                                    <input type="text" readonly class="form-control-plaintext text-white" value="Numero Externo">
+                                </div>
+
+                                <div class="col-auto">
+                                    <label for="NumExt" class="visually-hidden"></label>
+                                    <input type="text" class="form-control" id="NumExt">
+                                </div>
+
+                            </form>
+
+                            <form class="row g-2 pt-3">
+
+                                <div class="col-auto ps-5">
+                                  <input type="text" readonly class="form-control-plaintext text-white"value="Numero Interno">
+                                </div>
+
+                                <div class="col-auto">
+                                  <label for="NumInt" class="visually-hidden"></label>
+                                  <input type="text" class="form-control" id="NumInt">
+                                </div>
+
+                                <div class="col-auto ps-5">
+                                    <input type="text" readonly class="form-control-plaintext text-white" value="Colonia">
+                                </div>
+
+                                <div class="col-auto">
+                                    <label for="Col" class="visually-hidden"></label>
+                                    <input type="text" class="form-control" id="Col">
+                                </div>
+
+                            </form>
+
+                    </div>
+                    <!--Datos Familiares-->
+                    <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example position-relative mt-2 overflow-hidden me-5" tabindex="0">
+                        <h4 id="DatFam" class="pb-3 text-white">Datos familiares</h4>
+
+                            <form class="row g-2">
+
+                                <div class="col-auto ps-5">
+                                  <input type="text" readonly class="form-control-plaintext text-white"value="Nombre de la madre">
+                                </div>
+
+                                <div class="col-auto">
+                                  <label for="NomMad" class="visually-hidden"></label>
+                                  <input type="text" class="form-control" id="NomMad">
+                                </div>
+
+                                <div class="col-auto ps-5">
+                                    <input type="text" readonly class="form-control-plaintext text-white" value="Nombre del padre">
+                                </div>
+
+                                <div class="col-auto">
+                                    <label for="NomPad" class="visually-hidden"></label>
+                                    <input type="text" class="form-control" id="NomPad">
+                                </div>
+
+                            </form>
+
+                            <form class="row g-2 pt-3">
+
+                                <div class="col-auto ps-5">
+                                  <input type="text" readonly class="form-control-plaintext text-white"value="Nombre de la Hermana">
+                                </div>
+
+                                <div class="col-auto">
+                                  <label for="NomHera" class="visually-hidden"></label>
+                                  <input type="text" class="form-control" id="NomHera">
+                                </div>
+
+                                <div class="col-auto ps-5">
+                                    <input type="text" readonly class="form-control-plaintext text-white" value="Nombre del Hermano">
+                                </div>
+
+                                <div class="col-auto">
+                                    <label for="NomHero" class="visually-hidden"></label>
+                                    <input type="text" class="form-control" id="NomHero">
+                                </div>
+
+                            </form>
+
+                            <form class="row g-2 pt-3">
+
+                                <div class="col-auto ps-5">
+                                  <input type="text" readonly class="form-control-plaintext text-white"value="Estado Civil">
+                                </div>
+
+                                <div class="col-auto">
+                                  <label for="EstCiv" class="visually-hidden"></label>
+                                  <input type="text" class="form-control" id="EstCiv">
+                                </div>
+
+                                <div class="col-auto ps-5">
+                                    <input type="text" readonly class="form-control-plaintext text-white" value="Relacion">
+                                </div>
+
+                                <div class="col-auto">
+                                    <label for="Rel" class="visually-hidden"></label>
+                                    <input type="text" class="form-control" id="Rel">
+                                </div>
+
+                            </form>
+
+                    </div>
+                    <!--Datos antropometricos-->
+                    <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example position-relative mt-2 overflow-hidden me-5" tabindex="0">
+                        <h4 id="Ant" class="pb-3 text-white">Datos Antropométricos</h4>
+
+                            <form class="row g-2">
+
+                                <div class="col-auto ps-5">
+                                  <input type="text" readonly class="form-control-plaintext text-white"value="Altura">
+                                </div>
+
+                                <div class="col-auto">
+                                  <label for="Alt" class="visually-hidden"></label>
+                                  <input type="text" class="form-control" id="Alt">
+                                </div>
+
+                                <div class="col-auto ps-5">
+                                    <input type="text" readonly class="form-control-plaintext text-white" value="Forma de la cabeza">
+                                </div>
+
+                                <div class="col-auto">
+                                    <label for="ForCab" class="visually-hidden"></label>
+                                    <input type="text" class="form-control" id="ForCab">
+                                </div>
+
+                            </form>
+
+                            <form class="row g-2 pt-3">
+
+                                <div class="col-auto ps-5">
+                                  <input type="text" readonly class="form-control-plaintext text-white"value="Cabello">
+                                </div>
+
+                                <div class="col-auto">
+                                  <label for="Cab" class="visually-hidden"></label>
+                                  <input type="text" class="form-control" id="Cab">
+                                </div>
+
+                                <div class="col-auto ps-5">
+                                    <input type="text" readonly class="form-control-plaintext text-white" value="Color">
+                                </div>
+
+                                <div class="col-auto">
+                                    <label for="Color" class="visually-hidden"></label>
+                                    <input type="text" class="form-control" id="Color">
+                                </div>
+
+                            </form>
+
+                            <form class="row g-2 pt-3">
+
+                                <div class="col-auto ps-5">
+                                  <input type="text" readonly class="form-control-plaintext text-white"value="Cejas">
+                                </div>
+
+                                <div class="col-auto">
+                                  <label for="Cej" class="visually-hidden"></label>
+                                  <input type="text" class="form-control" id="Cej">
+                                </div>
+
+                                <div class="col-auto ps-5">
+                                    <input type="text" readonly class="form-control-plaintext text-white" value="Tamaño de ojos">
+                                </div>
+
+                                <div class="col-auto">
+                                    <label for="TamOjo" class="visually-hidden"></label>
+                                    <input type="text" class="form-control" id="TamOjo">
+                                </div>
+
+                            </form>
+
+                            <form class="row g-2 pt-3">
+
+                                <div class="col-auto ps-5">
+                                  <input type="text" readonly class="form-control-plaintext text-white"value="Tamaño de orejas">
+                                </div>
+
+                                <div class="col-auto">
+                                  <label for="TamOre" class="visually-hidden"></label>
+                                  <input type="text" class="form-control" id="TamOre">
+                                </div>
+
+                                <div class="col-auto ps-5">
+                                    <input type="text" readonly class="form-control-plaintext text-white"value="Tez">
+                                  </div>
+
+                                  <div class="col-auto">
+                                    <label for="Tez" class="visually-hidden"></label>
+                                    <input type="text" class="form-control" id="Tez">
+                                  </div>
+
+                            </form>
+
+                            <form class="row g-2 pt-3">
+
+                                <div class="col-auto ps-5">
+                                    <input type="text" readonly class="form-control-plaintext text-white" value="Vello facial">
+                                </div>
+
+                                <div class="col-auto">
+                                    <label for="VelFac" class="visually-hidden"></label>
+                                    <input type="text" class="form-control" id="VelFac">
+                                  </div>
+
+                            </form>
+
+                    </div>
+                    <!--Adicciones-->
+                    <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example position-relative mt-2 overflow-hidden me-5" tabindex="0">
+                        <h4 id="Adi" class="pb-3 text-white">Adicciones</h4>
+
+                            <form class="row g-2">
+
+                                <div class="col-auto ps-5">
+                                  <input type="text" readonly class="form-control-plaintext text-white"value="Adicciones">
+                                </div>
+
+                                <div class="col-auto">
+                                  <label for="Adicc" class="visually-hidden"></label>
+                                  <input type="text" class="form-control" id="Adicc">
+                                </div>
+                            </form>
+
+                    </div>
+                    <!--Discapacidad-->
+                    <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example position-relative mt-2 overflow-hidden me-5" tabindex="0">
+                        <h4 id="Dis" class="pb-3 text-white">Discapacidad</h4>
+
+                            <form class="row g-2">
+
+                                <div class="col-auto ps-5">
+                                    <input type="text" readonly class="form-control-plaintext text-white"value="Discapacidad">
+                                  </div>
+  
+                                  <div class="col-auto">
+                                    <label for="Disca" class="visually-hidden"></label>
+                                    <input type="text" class="form-control" id="Disca">
+                                  </div>
+
+                            </form>
+
+                    </div>
+                    <!--Vestimenta-->
+                    <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example position-relative mt-2 overflow-hidden me-5" tabindex="0">
+                    <h4 id="Ves" class="pb-3 text-white">Vestimenta</h4>
+
+                        <form class="row g-2">
+
+                            <div class="col-auto ps-5">
+                              <input type="text" readonly class="form-control-plaintext text-white"value="Tocado">
+                            </div>
+
+                            <div class="col-auto">
+                              <label for="Tocad" class="visually-hidden"></label>
+                              <input type="text" class="form-control" id="Tocad">
+                            </div>
+
+                            <div class="col-auto ps-5">
+                                <input type="text" readonly class="form-control-plaintext text-white" value="Color tocado">
+                            </div>
+
+                            <div class="col-auto">
+                                <label for="ColTocad" class="visually-hidden"></label>
+                                <input type="text" class="form-control" id="ColTocad">
+                            </div>
+
+                        </form>
+
+                        <form class="row g-2 pt-3">
+
+                            <div class="col-auto ps-5">
+                              <input type="text" readonly class="form-control-plaintext text-white"value="Caracteristicas tocado">
+                            </div>
+
+                            <div class="col-auto">
+                              <label for="CarTocad" class="visually-hidden"></label>
+                              <input type="text" class="form-control" id="CarTocad">
+                            </div>
+
+                            <div class="col-auto ps-5">
+                                <input type="text" readonly class="form-control-plaintext text-white" value="Anteojos">
+                            </div>
+
+                            <div class="col-auto">
+                                <label for="Anteo" class="visually-hidden"></label>
+                                <input type="text" class="form-control" id="Anteo">
+                            </div>
+
+                        </form>
+
+                        <form class="row g-2 pt-3">
+
+                            <div class="col-auto ps-5">
+                              <input type="text" readonly class="form-control-plaintext text-white"value="Parte superior">
+                            </div>
+
+                            <div class="col-auto">
+                              <label for="ParSup" class="visually-hidden"></label>
+                              <input type="text" class="form-control" id="ParSup">
+                            </div>
+
+                            <div class="col-auto ps-5">
+                                <input type="text" readonly class="form-control-plaintext text-white"value="Estampado">
+                              </div>
+
+                              <div class="col-auto">
+                                <label for="Estam" class="visually-hidden"></label>
+                                <input type="text" class="form-control" id="Estam">
+                              </div>
+
+                        </form>
+
+                        <form class="row g-2 pt-3">
+
+                            <div class="col-auto ps-5">
+                              <input type="text" readonly class="form-control-plaintext text-white"value="Marca Parte Superior">
+                            </div>
+
+                            <div class="col-auto">
+                              <label for="MarParSup" class="visually-hidden"></label>
+                              <input type="text" class="form-control" id="MarParSup">
+                            </div>
+
+                            <div class="col-auto ps-5">
+                                <input type="text" readonly class="form-control-plaintext text-white" value="Manga">
+                            </div>
+
+                            <div class="col-auto">
+                                <label for="Mang" class="visually-hidden"></label>
+                                <input type="text" class="form-control" id="Mang">
+                            </div>
+
+                        </form>
+
+                        <form class="row g-2 pt-3">
+
+                            <div class="col-auto ps-5">
+                              <input type="text" readonly class="form-control-plaintext text-white"value="Parte inferior">
+                            </div>
+
+                            <div class="col-auto">
+                              <label for="ParInf" class="visually-hidden"></label>
+                              <input type="text" class="form-control" id="ParInf">
+                            </div>
+
+                            <div class="col-auto ps-5">
+                                <input type="text" readonly class="form-control-plaintext text-white" value="Color parte inferior">
+                            </div>
+
+                            <div class="col-auto">
+                                <label for="ColParInf" class="visually-hidden"></label>
+                                <input type="text" class="form-control" id="ColParInf">
+                            </div>
+
+                        </form>
+
+                        <form class="row g-2 pt-3">
+
+                            <div class="col-auto ps-5">
+                              <input type="text" readonly class="form-control-plaintext text-white"value="Caracteristicas parte inferior">
+                            </div>
+
+                            <div class="col-auto">
+                              <label for="CarParInf" class="visually-hidden"></label>
+                              <input type="text" class="form-control" id="CarParInf">
+                            </div>
+
+                            <div class="col-auto ps-5">
+                                <input type="text" readonly class="form-control-plaintext text-white" value="Mochila">
+                            </div>
+
+                            <div class="col-auto">
+                                <label for="Mochi" class="visually-hidden"></label>
+                                <input type="text" class="form-control" id="Mochi">
+                            </div>
+
+                        </form>
+
+                        <form class="row g-2 pt-3">
+
+                            <div class="col-auto ps-5">
+                              <input type="text" readonly class="form-control-plaintext text-white"value="Color mochila">
+                            </div>
+
+                            <div class="col-auto">
+                              <label for="ColMochi" class="visually-hidden"></label>
+                              <input type="text" class="form-control" id="ColMochi">
+                            </div>
+
+                            <div class="col-auto ps-5">
+                                <input type="text" readonly class="form-control-plaintext text-white" value="Caracteristicas de la mochila">
+                            </div>
+
+                            <div class="col-auto">
+                                <label for="CarMochi" class="visually-hidden"></label>
+                                <input type="text" class="form-control" id="CarMochi">
+                            </div>
+
+                        </form>
+
+                        <form class="row g-2 pt-3">
+
+                            <div class="col-auto ps-5">
+                              <input type="text" readonly class="form-control-plaintext text-white"value="Calzado">
+                            </div>
+
+                            <div class="col-auto">
+                              <label for="Calz" class="visually-hidden"></label>
+                              <input type="text" class="form-control" id="Calz">
+                            </div>
+
+                            <div class="col-auto ps-5">
+                                <input type="text" readonly class="form-control-plaintext text-white" value="Color calzado">
+                            </div>
+
+                            <div class="col-auto">
+                                <label for="ColCalz" class="visually-hidden"></label>
+                                <input type="text" class="form-control" id="ColCalz">
+                            </div>
+
+                        </form>
+
+                        <form class="row g-2 pt-3">
+
+                            <div class="col-auto ps-5">
+                              <input type="text" readonly class="form-control-plaintext text-white"value="Marca calzado">
+                            </div>
+
+                            <div class="col-auto">
+                              <label for="MarCalz" class="visually-hidden"></label>
+                              <input type="text" class="form-control" id="MarCalz">
+                            </div>
+
+                            <div class="col-auto ps-5">
+                                <input type="text" readonly class="form-control-plaintext text-white" value="Mariconera">
+                            </div>
+
+                            <div class="col-auto">
+                                <label for="Maric" class="visually-hidden"></label>
+                                <input type="text" class="form-control" id="Maric">
+                            </div>
+
+                        </form>
+
+                        <form class="row g-2 pt-3">
+
+                            <div class="col-auto ps-5">
+                              <input type="text" readonly class="form-control-plaintext text-white"value="Color mariconera">
+                            </div>
+
+                            <div class="col-auto">
+                              <label for="ColMaric" class="visually-hidden"></label>
+                              <input type="text" class="form-control" id="ColMaric">
+                            </div>
+
+                            <div class="col-auto ps-5">
+                                <input type="text" readonly class="form-control-plaintext text-white" value="Casco">
+                            </div>
+
+                            <div class="col-auto">
+                                <label for="Casc" class="visually-hidden"></label>
+                                <input type="text" class="form-control" id="Casc">
+                            </div>
+
+                        </form>
+
+                        <form class="row g-2 pt-3">
+
+                            <div class="col-auto ps-5">
+                              <input type="text" readonly class="form-control-plaintext text-white"value="Color casco">
+                            </div>
+
+                            <div class="col-auto">
+                              <label for="ColCasc" class="visually-hidden"></label>
+                              <input type="text" class="form-control" id="ColCasc">
+                            </div>
+
+                        </form>
+
+                    </div>
+                    <!--Tatuajes-->
+                    <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example position-relative mt-2 overflow-hidden me-5" tabindex="0">
+                
+                <h4 class="pb-3 text-white">Tatuajes</h4>
+
+                <h5 id="TatCar" class="pb-3 pt-5 pl-5 text-white">Cara</h5>
+
+                    <form class="row g-2">
+
+                      <h6 class="text-white">Frente Izquierdo</h6>
+
+                      <div class="col-auto">
+
+                        <label for="FrenIzq" class="form-label text-white">Imagen</label>
+                        <input class="form-control form-control-sm" id="FrenIzq" type="file">
+
+                      </div>
+
+                      <div class="col-auto ps-5">
+                        <input type="text" readonly class="form-control-plaintext text-white" value="Descripcion de la Imagen">
+                      </div>
+
+                      <div class="col-auto">
+                        <label for="DescFrenIzq" class="visually-hidden"></label>
+                        <input type="text" class="form-control" id="DescFrenIzq">
+                      </div>
+
+                    </form>
+
+                    <form class="row g-2 pt-3">
+
+                      <h6 class="text-white">Frente Derecho</h6>
+
+                      <div class="col-auto">
+
+                        <label for="FrenDer" class="form-label text-white">Imagen</label>
+                        <input class="form-control form-control-sm" id="FrenDer" type="file">
+
+                      </div>
+
+                      <div class="col-auto ps-5">
+                        <input type="text" readonly class="form-control-plaintext text-white" value="Descripcion de la Imagen">
+                      </div>
+
+                      <div class="col-auto">
+                        <label for="DescFrenDer" class="visually-hidden"></label>
+                        <input type="text" class="form-control" id="DescFrenDer">
+                      </div>
+
+                    </form>
+
+                    <form class="row g-2 pt-3">
+
+                      <h6 class="text-white">Frente Centro</h6>
+
+                      <div class="col-auto">
+
+                        <label for="FrenCen" class="form-label text-white">Imagen</label>
+                        <input class="form-control form-control-sm" id="FrenCen" type="file">
+
+                      </div>
+
+                      <div class="col-auto ps-5">
+                        <input type="text" readonly class="form-control-plaintext text-white" value="Descripcion de la Imagen">
+                      </div>
+
+                      <div class="col-auto">
+                        <label for="DescFrenCen" class="visually-hidden"></label>
+                        <input type="text" class="form-control" id="DescFrenCen">
+                      </div>
+
+                    </form>
+
+                    <form class="row g-2 pt-3">
+
+                      <h6 class="text-white">Mejilla Izquierda</h6>
+
+                      <div class="col-auto">
+
+                        <label for="MejIzq" class="form-label text-white">Imagen</label>
+                        <input class="form-control form-control-sm" id="MejIzq" type="file">
+
+                      </div>
+
+                      <div class="col-auto ps-5">
+                        <input type="text" readonly class="form-control-plaintext text-white" value="Descripcion de la Imagen">
+                      </div>
+
+                      <div class="col-auto">
+                        <label for="DescMejIzq" class="visually-hidden"></label>
+                        <input type="text" class="form-control" id="DescMejIzq">
+                      </div>
+
+                    </form>
+
+                    <form class="row g-2 pt-3">
+
+                      <h6 class="text-white">Pómulo izquierdo</h6>
+
+                      <div class="col-auto">
+
+                        <label for="PomIzq" class="form-label text-white">Imagen</label>
+                        <input class="form-control form-control-sm" id="PomIzq" type="file">
+
+                      </div>
+
+                      <div class="col-auto ps-5">
+                        <input type="text" readonly class="form-control-plaintext text-white" value="Descripcion de la Imagen">
+                      </div>
+
+                      <div class="col-auto">
+                        <label for="DescPomIzq" class="visually-hidden"></label>
+                        <input type="text" class="form-control" id="DescPomIzq">
+                      </div>
+
+                    </form>
+
+                    
+                    <form class="row g-2 pt-3">
+
+                      <h6 class="text-white">Pómulo Derecho</h6>
+
+                      <div class="col-auto">
+
+                        <label for="PomDer" class="form-label text-white">Imagen</label>
+                        <input class="form-control form-control-sm" id="PomDer" type="file">
+
+                      </div>
+
+                      <div class="col-auto ps-5">
+                        <input type="text" readonly class="form-control-plaintext text-white text-white" value="Descripcion de la Imagen">
+                      </div>
+
+                      <div class="col-auto">
+                        <label for="DescPomDer" class="visually-hidden"></label>
+                        <input type="text" class="form-control" id="DescPomDer">
+                      </div>
+
+                    </form>
+
+                    
+                    <form class="row g-2 pt-3">
+
+                      <h6 class="text-white">Mentón Derecho</h6>
+
+                      <div class="col-auto">
+
+                        <label for="MenDer" class="form-label text-white">Imagen</label>
+                        <input class="form-control form-control-sm" id="MenDer" type="file">
+
+                      </div>
+
+                      <div class="col-auto ps-5">
+                        <input type="text" readonly class="form-control-plaintext text-white" value="Descripcion de la Imagen">
+                      </div>
+
+                      <div class="col-auto">
+                        <label for="DescMenDer" class="visually-hidden"></label>
+                        <input type="text" class="form-control" id="DescMenDer">
+                      </div>
+
+                    </form>
+
+
+
+
+                    <!-- --------------------- Tronco ------------------------ -->
+                    <h5 id="TatTro" class="pb-3 pt-5 pl-5 text-white">Tronco</h5>
+
+                    <form class="row g-2 pt-3">
+
+                      <h6 class="text-white">Cuello Izquierdo</h6>
+
+                      <div class="col-auto">
+
+                        <label for="CueIzq" class="form-label text-white">Imagen</label>
+                        <input class="form-control form-control-sm" id="CueIzq" type="file">
+
+                      </div>
+
+                      <div class="col-auto ps-5">
+                        <input type="text" readonly class="form-control-plaintext text-white" value="Descripcion de la Imagen">
+                      </div>
+
+                      <div class="col-auto">
+                        <label for="DescCueIzq" class="visually-hidden"></label>
+                        <input type="text" class="form-control" id="DescCueIzq">
+                      </div>
+
+                    </form>
+
+                    <form class="row g-2 pt-3">
+
+                      <h6 class="text-white">Cuello Derecho</h6>
+
+                      <div class="col-auto">
+
+                        <label for="CueDer" class="form-label text-white">Imagen</label>
+                        <input class="form-control form-control-sm" id="CueDer" type="file">
+
+                      </div>
+
+                      <div class="col-auto ps-5">
+                        <input type="text" readonly class="form-control-plaintext text-white" value="Descripcion de la Imagen">
+                      </div>
+
+                      <div class="col-auto">
+                        <label for="DescCueDer" class="visually-hidden"></label>
+                        <input type="text" class="form-control" id="DescCueDer">
+                      </div>
+
+                    </form>
+
+                    <form class="row g-2 pt-3">
+
+                      <h6 class="text-white">Cuello Centro</h6>
+
+                      <div class="col-auto">
+
+                        <label for="CueCen" class="form-label text-white">Imagen</label>
+                        <input class="form-control form-control-sm" id="CueCen" type="file">
+
+                      </div>
+
+                      <div class="col-auto ps-5">
+                        <input type="text" readonly class="form-control-plaintext text-white" value="Descripcion de la Imagen">
+                      </div>
+
+                      <div class="col-auto">
+                        <label for="DescCueCen" class="visually-hidden"></label>
+                        <input type="text" class="form-control" id="DescCueCen">
+                      </div>
+
+                    </form>
+
+                    <form class="row g-2 pt-3">
+
+                      <h6 class="text-white">Nuca Izquierda</h6>
+
+                      <div class="col-auto">
+
+                        <label for="NucIzq" class="form-label text-white">Imagen</label>
+                        <input class="form-control form-control-sm" id="NucIzq" type="file">
+
+                      </div>
+
+                      <div class="col-auto ps-5">
+                        <input type="text" readonly class="form-control-plaintext text-white" value="Descripcion de la Imagen">
+                      </div>
+
+                      <div class="col-auto">
+                        <label for="DescNucIzq" class="visually-hidden"></label>
+                        <input type="text" class="form-control" id="DescNucIzq">
+                      </div>
+
+                    </form>
+
+                    <form class="row g-2 pt-3">
+
+                      <h6 class="text-white">Nuca Derecha</h6>
+
+                      <div class="col-auto">
+
+                        <label for="NucDer" class="form-label text-white">Imagen</label>
+                        <input class="form-control form-control-sm" id="NucDer" type="file">
+
+                      </div>
+
+                      <div class="col-auto ps-5">
+                        <input type="text" readonly class="form-control-plaintext text-white" value="Descripcion de la Imagen">
+                      </div>
+
+                      <div class="col-auto">
+                        <label for="DescNucDer" class="visually-hidden"></label>
+                        <input type="text" class="form-control" id="DescNucDer">
+                      </div>
+
+                    </form>
+
+                    <form class="row g-2 pt-3">
+
+                      <h6 class="text-white">Nuca Centro</h6>
+
+                      <div class="col-auto">
+
+                        <label for="NucCen" class="form-label text-white">Imagen</label>
+                        <input class="form-control form-control-sm" id="NucCen" type="file">
+
+                      </div>
+
+                      <div class="col-auto ps-5">
+                        <input type="text" readonly class="form-control-plaintext text-white" value="Descripcion de la Imagen">
+                      </div>
+
+                      <div class="col-auto">
+                        <label for="DescNucCen" class="visually-hidden"></label>
+                        <input type="text" class="form-control" id="DescNucCen">
+                      </div>
+
+                    </form>
+
+                    <form class="row g-2 pt-3">
+
+                      <h6 class="text-white">Espalda Izquierda</h6>
+
+                      <div class="col-auto">
+
+                        <label for="EspIzq" class="form-label text-white">Imagen</label>
+                        <input class="form-control form-control-sm" id="EspIzq" type="file">
+
+                      </div>
+
+                      <div class="col-auto ps-5">
+                        <input type="text" readonly class="form-control-plaintext text-white" value="Descripcion de la Imagen">
+                      </div>
+
+                      <div class="col-auto">
+                        <label for="DescEspIzq" class="visually-hidden"></label>
+                        <input type="text" class="form-control" id="DescEspIzq">
+                      </div>
+
+                    </form>
+
+                    <form class="row g-2 pt-3">
+
+                      <h6 class="text-white">Espalda Derecha</h6>
+
+                      <div class="col-auto">
+
+                        <label for="EspDer" class="form-label text-white">Imagen</label>
+                        <input class="form-control form-control-sm" id="EspDer" type="file">
+
+                      </div>
+
+                      <div class="col-auto ps-5">
+                        <input type="text" readonly class="form-control-plaintext text-white" value="Descripcion de la Imagen">
+                      </div>
+
+                      <div class="col-auto">
+                        <label for="DescEspDer" class="visually-hidden"></label>
+                        <input type="text" class="form-control" id="DescEspDer">
+                      </div>
+
+                    </form>
+
+                    <form class="row g-2 pt-3">
+
+                      <h6 class="text-white">Espalda Centro</h6>
+
+                      <div class="col-auto">
+
+                        <label for="EspCen" class="form-label text-white">Imagen</label>
+                        <input class="form-control form-control-sm" id="EspCen" type="file">
+
+                      </div>
+
+                      <div class="col-auto ps-5">
+                        <input type="text" readonly class="form-control-plaintext text-white" value="Descripcion de la Imagen">
+                      </div>
+
+                      <div class="col-auto">
+                        <label for="DescEspCen" class="visually-hidden"></label>
+                        <input type="text" class="form-control" id="DescEspCen">
+                      </div>
+
+                    </form>
+
+                    <form class="row g-2 pt-3">
+
+                      <h6 class="text-white">Pecho Izquierdo</h6>
+
+                      <div class="col-auto">
+
+                        <label for="PecIzq" class="form-label text-white">Imagen</label>
+                        <input class="form-control form-control-sm" id="PecIzq" type="file">
+
+                      </div>
+
+                      <div class="col-auto ps-5">
+                        <input type="text" readonly class="form-control-plaintext text-white" value="Descripcion de la Imagen">
+                      </div>
+
+                      <div class="col-auto">
+                        <label for="DescPecIzq" class="visually-hidden"></label>
+                        <input type="text" class="form-control" id="DescPecIzq">
+                      </div>
+
+                    </form>
+
+                    <form class="row g-2 pt-3">
+
+                      <h6 class="text-white">Pecho Derecho</h6>
+
+                      <div class="col-auto">
+
+                        <label for="PecDer" class="form-label text-white">Imagen</label>
+                        <input class="form-control form-control-sm" id="PecDer" type="file">
+
+                      </div>
+
+                      <div class="col-auto ps-5">
+                        <input type="text" readonly class="form-control-plaintext text-white" value="Descripcion de la Imagen">
+                      </div>
+
+                      <div class="col-auto">
+                        <label for="DescPecDer" class="visually-hidden"></label>
+                        <input type="text" class="form-control" id="DescPecDer">
+                      </div>
+
+                    </form>
+
+                    <form class="row g-2 pt-3">
+
+                      <h6 class="text-white">Pecho Centro</h6>
+
+                      <div class="col-auto">
+
+                        <label for="PecCen" class="form-label text-white">Imagen</label>
+                        <input class="form-control form-control-sm" id="PecCen" type="file">
+
+                      </div>
+
+                      <div class="col-auto ps-5">
+                        <input type="text" readonly class="form-control-plaintext text-white" value="Descripcion de la Imagen">
+                      </div>
+
+                      <div class="col-auto">
+                        <label for="DescPecCen" class="visually-hidden"></label>
+                        <input type="text" class="form-control" id="DescPecCen">
+                      </div>
+
+                    </form>
+
+                    <form class="row g-2 pt-3">
+
+                      <h6 class="text-white">Abdomen Izquierdo</h6>
+
+                      <div class="col-auto">
+
+                        <label for="AbdIzq" class="form-label text-white">Imagen</label>
+                        <input class="form-control form-control-sm" id="AbdIzq" type="file">
+
+                      </div>
+
+                      <div class="col-auto ps-5">
+                        <input type="text" readonly class="form-control-plaintext text-white" value="Descripcion de la Imagen">
+                      </div>
+
+                      <div class="col-auto">
+                        <label for="DescAbdIzq" class="visually-hidden"></label>
+                        <input type="text" class="form-control" id="DescAbdIzq">
+                      </div>
+
+                    </form>
+
+                    <form class="row g-2 pt-3">
+
+                      <h6 class="text-white">Abdomen Derecho</h6>
+
+                      <div class="col-auto">
+
+                        <label for="AbdDer" class="form-label text-white">Imagen</label>
+                        <input class="form-control form-control-sm" id="AbdDer" type="file">
+
+                      </div>
+
+                      <div class="col-auto ps-5">
+                        <input type="text" readonly class="form-control-plaintext text-white" value="Descripcion de la Imagen">
+                      </div>
+
+                      <div class="col-auto">
+                        <label for="DescAbdDer" class="visually-hidden"></label>
+                        <input type="text" class="form-control" id="DescAbdDer">
+                      </div>
+
+                    </form>
+
+                    <form class="row g-2 pt-3">
+
+                      <h6 class="text-white">Abdomen Centro</h6>
+
+                      <div class="col-auto">
+
+                        <label for="AbdCen" class="form-label text-white">Imagen</label>
+                        <input class="form-control form-control-sm" id="AbdCen" type="file">
+
+                      </div>
+
+                      <div class="col-auto ps-5">
+                        <input type="text" readonly class="form-control-plaintext text-white" value="Descripcion de la Imagen">
+                      </div>
+
+                      <div class="col-auto">
+                        <label for="DescAbdCen" class="visually-hidden"></label>
+                        <input type="text" class="form-control" id="DescAbdCen">
+                      </div>
+
+                    </form>
+
+                    <form class="row g-2 pt-3">
+
+                      <h6 class="text-white">Ingle Izquierda</h6>
+
+                      <div class="col-auto">
+
+                        <label for="IngIzq" class="form-label text-white">Imagen</label>
+                        <input class="form-control form-control-sm" id="IngIzq" type="file">
+
+                      </div>
+
+                      <div class="col-auto ps-5">
+                        <input type="text" readonly class="form-control-plaintext text-white" value="Descripcion de la Imagen">
+                      </div>
+
+                      <div class="col-auto">
+                        <label for="DescIngIzq" class="visually-hidden"></label>
+                        <input type="text" class="form-control" id="DescIngIzq">
+                      </div>
+
+                    </form>
+
+                    <form class="row g-2 pt-3">
+
+                      <h6 class="text-white">Ingle Derecha</h6>
+
+                      <div class="col-auto">
+
+                        <label for="IngDer" class="form-label text-white">Imagen</label>
+                        <input class="form-control form-control-sm" id="IngDer" type="file">
+
+                      </div>
+
+                      <div class="col-auto ps-5">
+                        <input type="text" readonly class="form-control-plaintext text-white" value="Descripcion de la Imagen">
+                      </div>
+
+                      <div class="col-auto">
+                        <label for="DescIngDer" class="visually-hidden"></label>
+                        <input type="text" class="form-control" id="DescIngDer">
+                      </div>
+
+                    </form>
+
+                    <form class="row g-2 pt-3">
+
+                      <h6 class="text-white">Ingle Centro</h6>
+
+                      <div class="col-auto">
+
+                        <label for="IngCen" class="form-label text-white">Imagen</label>
+                        <input class="form-control form-control-sm" id="IngCen" type="file">
+
+                      </div>
+
+                      <div class="col-auto ps-5">
+                        <input type="text" readonly class="form-control-plaintext text-white" value="Descripcion de la Imagen">
+                      </div>
+
+                      <div class="col-auto">
+                        <label for="DescIngCen" class="visually-hidden"></label>
+                        <input type="text" class="form-control" id="DescIngCen">
+                      </div>
+
+                    </form>
+
+                    <!-- ------------------SUPERIORES-------------------------- -->
+
+                    <h5 id="TatSup" class="pb-3 pt-5 pl-5 text-white">Superiores</h5>
+
+                    <form class="row g-2 pt-3">
+
+                      <h6 class="text-white">Hombro Izquierdo</h6>
+
+                      <div class="col-auto">
+
+                        <label for="HomIzq" class="form-label text-white">Imagen</label>
+                        <input class="form-control form-control-sm" id="HomIzq" type="file">
+
+                      </div>
+
+                      <div class="col-auto ps-5">
+                        <input type="text" readonly class="form-control-plaintext text-white" value="Descripcion de la Imagen">
+                      </div>
+
+                      <div class="col-auto">
+                        <label for="DescHomIzq" class="visually-hidden"></label>
+                        <input type="text" class="form-control" id="DescHomIzq">
+                      </div>
+
+                    </form>
+
+                    <form class="row g-2 pt-3">
+
+                      <h6 class="text-white">Hombro Derecho</h6>
+
+                      <div class="col-auto">
+
+                        <label for="HomDer" class="form-label text-white">Imagen</label>
+                        <input class="form-control form-control-sm" id="HomDer" type="file">
+
+                      </div>
+
+                      <div class="col-auto ps-5">
+                        <input type="text" readonly class="form-control-plaintext text-white" value="Descripcion de la Imagen">
+                      </div>
+
+                      <div class="col-auto">
+                        <label for="DescHomDer" class="visually-hidden"></label>
+                        <input type="text" class="form-control" id="DescHomDer">
+                      </div>
+
+                    </form>
+
+                    <form class="row g-2 pt-3">
+
+                      <h6 class="text-white">Brazo Izquierdo</h6>
+
+                      <div class="col-auto">
+
+                        <label for="BraIzq" class="form-label text-white">Imagen</label>
+                        <input class="form-control form-control-sm" id="BraIzq" type="file">
+
+                      </div>
+
+                      <div class="col-auto ps-5">
+                        <input type="text" readonly class="form-control-plaintext text-white" value="Descripcion de la Imagen">
+                      </div>
+
+                      <div class="col-auto">
+                        <label for="DescBraIzq" class="visually-hidden"></label>
+                        <input type="text" class="form-control" id="DescBraIzq">
+                      </div>
+
+                    </form>
+
+                    <form class="row g-2 pt-3">
+
+                      <h6 class="text-white">Brazo Derecho</h6>
+
+                      <div class="col-auto">
+
+                        <label for="BraDer" class="form-label text-white">Imagen</label>
+                        <input class="form-control form-control-sm" id="BraDer" type="file">
+
+                      </div>
+
+                      <div class="col-auto ps-5">
+                        <input type="text" readonly class="form-control-plaintext text-white" value="Descripcion de la Imagen">
+                      </div>
+
+                      <div class="col-auto">
+                        <label for="DescBraDer" class="visually-hidden"></label>
+                        <input type="text" class="form-control" id="DescBraDer">
+                      </div>
+
+                    </form>
+
+                    <form class="row g-2 pt-3">
+
+                      <h6 class="text-white">Codo Izquierdo</h6>
+
+                      <div class="col-auto">
+
+                        <label for="CodIzq" class="form-label text-white">Imagen</label>
+                        <input class="form-control form-control-sm" id="CodIzq" type="file">
+
+                      </div>
+
+                      <div class="col-auto ps-5">
+                        <input type="text" readonly class="form-control-plaintext text-white" value="Descripcion de la Imagen">
+                      </div>
+
+                      <div class="col-auto">
+                        <label for="DescCodIzq" class="visually-hidden"></label>
+                        <input type="text" class="form-control" id="DescCodIzq">
+                      </div>
+
+                    </form>
+
+                    <form class="row g-2 pt-3">
+
+                      <h6 class="text-white">Codo Derecho</h6>
+
+                      <div class="col-auto">
+
+                        <label for="CodDer" class="form-label text-white">Imagen</label>
+                        <input class="form-control form-control-sm" id="CodDer" type="file">
+
+                      </div>
+
+                      <div class="col-auto ps-5">
+                        <input type="text" readonly class="form-control-plaintext text-white" value="Descripcion de la Imagen">
+                      </div>
+
+                      <div class="col-auto">
+                        <label for="DescCodDer" class="visually-hidden"></label>
+                        <input type="text" class="form-control" id="DescCodDer">
+                      </div>
+
+                    </form>
+
+                    <form class="row g-2 pt-3">
+
+                      <h6 class="text-white">Antebrazo Izquierdo</h6>
+
+                      <div class="col-auto">
+
+                        <label for="AntIzq" class="form-label text-white">Imagen</label>
+                        <input class="form-control form-control-sm" id="AntIzq" type="file">
+
+                      </div>
+
+                      <div class="col-auto ps-5">
+                        <input type="text" readonly class="form-control-plaintext text-white" value="Descripcion de la Imagen">
+                      </div>
+
+                      <div class="col-auto">
+                        <label for="DescAntIzq" class="visually-hidden"></label>
+                        <input type="text" class="form-control" id="DescAntIzq">
+                      </div>
+
+                    </form>
+
+                    <form class="row g-2 pt-3">
+
+                      <h6 class="text-white">Antebrazo Derecho</h6>
+
+                      <div class="col-auto">
+
+                        <label for="AntDer" class="form-label text-white">Imagen</label>
+                        <input class="form-control form-control-sm" id="AntDer" type="file">
+
+                      </div>
+
+                      <div class="col-auto ps-5">
+                        <input type="text" readonly class="form-control-plaintext text-white" value="Descripcion de la Imagen">
+                      </div>
+
+                      <div class="col-auto">
+                        <label for="DescAntDer" class="visually-hidden"></label>
+                        <input type="text" class="form-control" id="DescAntDer">
+                      </div>
+
+                    </form>
+
+                    <form class="row g-2 pt-3">
+
+                      <h6 class="text-white">Muñeca Izquierda</h6>
+
+                      <div class="col-auto">
+
+                        <label for="MunIzq" class="form-label text-white">Imagen</label>
+                        <input class="form-control form-control-sm" id="MunIzq" type="file">
+
+                      </div>
+
+                      <div class="col-auto ps-5">
+                        <input type="text" readonly class="form-control-plaintext text-white" value="Descripcion de la Imagen">
+                      </div>
+
+                      <div class="col-auto">
+                        <label for="DescMunIzq" class="visually-hidden"></label>
+                        <input type="text" class="form-control" id="DescMunIzq">
+                      </div>
+
+                    </form>
+
+                    <form class="row g-2 pt-3">
+
+                      <h6 class="text-white">Muñeca Derecha</h6>
+
+                      <div class="col-auto">
+
+                        <label for="MunDer" class="form-label text-white">Imagen</label>
+                        <input class="form-control form-control-sm" id="MunDer" type="file">
+
+                      </div>
+
+                      <div class="col-auto ps-5">
+                        <input type="text" readonly class="form-control-plaintext text-white" value="Descripcion de la Imagen">
+                      </div>
+
+                      <div class="col-auto">
+                        <label for="DescMunDer" class="visually-hidden"></label>
+                        <input type="text" class="form-control" id="DescMunDer">
+                      </div>
+
+                    </form>
+
+                    <form class="row g-2 pt-3">
+
+                      <h6 class="text-white">Mano Izquierda</h6>
+
+                      <div class="col-auto">
+
+                        <label for="ManIzq" class="form-label text-white">Imagen</label>
+                        <input class="form-control form-control-sm" id="ManIzq" type="file">
+
+                      </div>
+
+                      <div class="col-auto ps-5">
+                        <input type="text" readonly class="form-control-plaintext text-white" value="Descripcion de la Imagen">
+                      </div>
+
+                      <div class="col-auto">
+                        <label for="DescManIzq" class="visually-hidden"></label>
+                        <input type="text" class="form-control" id="DescManIzq">
+                      </div>
+
+                    </form>
+
+                    <form class="row g-2 pt-3">
+
+                      <h6 class="text-white">Mano Derecha</h6>
+
+                      <div class="col-auto">
+
+                        <label for="ManDer" class="form-label text-white">Imagen</label>
+                        <input class="form-control form-control-sm" id="ManDer" type="file">
+
+                      </div>
+
+                      <div class="col-auto ps-5">
+                        <input type="text" readonly class="form-control-plaintext text-white" value="Descripcion de la Imagen">
+                      </div>
+
+                      <div class="col-auto">
+                        <label for="DescManDer" class="visually-hidden"></label>
+                        <input type="text" class="form-control" id="DescManDer">
+                      </div>
+
+                    </form>
+
+                    <!-- -------------------INFERIORES---------------------- -->
+
+                    <h5 id="TatInf" class="pb-3 pt-5 pl-5 text-white">Inferiores</h5>
+
+                    <form class="row g-2 pt-3">
+
+                      <h6 class="text-white">Cadera Izquierdo</h6>
+
+                      <div class="col-auto">
+
+                        <label for="CadIzq" class="form-label text-white">Imagen</label>
+                        <input class="form-control form-control-sm" id="CadIzq" type="file">
+
+                      </div>
+
+                      <div class="col-auto ps-5">
+                        <input type="text" readonly class="form-control-plaintext text-white" value="Descripcion de la Imagen">
+                      </div>
+
+                      <div class="col-auto">
+                        <label for="DescCadIzq" class="visually-hidden"></label>
+                        <input type="text" class="form-control" id="DescCadIzq">
+                      </div>
+
+                    </form>
+
+                    <form class="row g-2 pt-3">
+
+                      <h6 class="text-white">Cadera Derecha</h6>
+
+                      <div class="col-auto">
+
+                        <label for="CadDer" class="form-label text-white">Imagen</label>
+                        <input class="form-control form-control-sm" id="CadDer" type="file">
+
+                      </div>
+
+                      <div class="col-auto ps-5">
+                        <input type="text" readonly class="form-control-plaintext text-white" value="Descripcion de la Imagen">
+                      </div>
+
+                      <div class="col-auto">
+                        <label for="DescCadDer" class="visually-hidden"></label>
+                        <input type="text" class="form-control" id="DescCadDer">
+                      </div>
+
+                    </form>
+
+                    <form class="row g-2 pt-3">
+
+                      <h6 class="text-white">Cadera Centro</h6>
+
+                      <div class="col-auto">
+
+                        <label for="CadCen" class="form-label text-white">Imagen</label>
+                        <input class="form-control form-control-sm" id="CadCen" type="file">
+
+                      </div>
+
+                      <div class="col-auto ps-5">
+                        <input type="text" readonly class="form-control-plaintext text-white" value="Descripcion de la Imagen">
+                      </div>
+
+                      <div class="col-auto">
+                        <label for="DescCadCen" class="visually-hidden"></label>
+                        <input type="text" class="form-control" id="DescCadCen">
+                      </div>
+
+                    </form>
+
+                    <form class="row g-2 pt-3">
+
+                      <h6 class="text-white">Muslo derecho</h6>
+
+                      <div class="col-auto">
+
+                        <label for="MusDer" class="form-label text-white">Imagen</label>
+                        <input class="form-control form-control-sm" id="MusDer" type="file">
+
+                      </div>
+
+                      <div class="col-auto ps-5">
+                        <input type="text" readonly class="form-control-plaintext text-white" value="Descripcion de la Imagen">
+                      </div>
+
+                      <div class="col-auto">
+                        <label for="DescMusDer" class="visually-hidden"></label>
+                        <input type="text" class="form-control" id="DescMusDer">
+                      </div>
+
+                    </form>
+
+                    <form class="row g-2 pt-3">
+
+                      <h6 class="text-white">Muslo Izquierdo</h6>
+
+                      <div class="col-auto">
+
+                        <label for="MusIzq" class="form-label text-white">Imagen</label>
+                        <input class="form-control form-control-sm" id="MusIzq" type="file">
+
+                      </div>
+
+                      <div class="col-auto ps-5">
+                        <input type="text" readonly class="form-control-plaintext text-white" value="Descripcion de la Imagen">
+                      </div>
+
+                      <div class="col-auto">
+                        <label for="DescMusIzq" class="visually-hidden"></label>
+                        <input type="text" class="form-control" id="DescMusIzq">
+                      </div>
+
+                    </form>
+
+                    <form class="row g-2 pt-3">
+
+                      <h6 class="text-white">Rodilla Izquierda</h6>
+
+                      <div class="col-auto">
+
+                        <label for="RodIzq" class="form-label text-white">Imagen</label>
+                        <input class="form-control form-control-sm" id="RodIzq" type="file">
+
+                      </div>
+
+                      <div class="col-auto ps-5">
+                        <input type="text" readonly class="form-control-plaintext text-white" value="Descripcion de la Imagen">
+                      </div>
+
+                      <div class="col-auto">
+                        <label for="DescRodIzq" class="visually-hidden"></label>
+                        <input type="text" class="form-control" id="DescRodIzq">
+                      </div>
+
+                    </form>
+
+                    <form class="row g-2 pt-3">
+
+                      <h6 class="text-white">Rodilla derecha</h6>
+
+                      <div class="col-auto">
+
+                        <label for="RodDer" class="form-label text-white">Imagen</label>
+                        <input class="form-control form-control-sm" id="RodDer" type="file">
+
+                      </div>
+
+                      <div class="col-auto ps-5">
+                        <input type="text" readonly class="form-control-plaintext text-white" value="Descripcion de la Imagen">
+                      </div>
+
+                      <div class="col-auto">
+                        <label for="DescRodDer" class="visually-hidden"></label>
+                        <input type="text" class="form-control" id="DescRodDer">
+                      </div>
+
+                    </form>
+
+                    <form class="row g-2 pt-3">
+
+                      <h6 class="text-white">Pierna Izquierda</h6>
+
+                      <div class="col-auto">
+
+                        <label for="PierIzq" class="form-label text-white">Imagen</label>
+                        <input class="form-control form-control-sm" id="PierIzq" type="file">
+
+                      </div>
+
+                      <div class="col-auto ps-5">
+                        <input type="text" readonly class="form-control-plaintext text-white" value="Descripcion de la Imagen">
+                      </div>
+
+                      <div class="col-auto">
+                        <label for="DescPierIzq" class="visually-hidden"></label>
+                        <input type="text" class="form-control" id="DescPierIzq">
+                      </div>
+
+                    </form>
+
+                    <form class="row g-2 pt-3">
+
+                      <h6 class="text-white">Pierna Derecha</h6>
+
+                      <div class="col-auto">
+
+                        <label for="PierDer" class="form-label text-white">Imagen</label>
+                        <input class="form-control form-control-sm" id="PierDer" type="file">
+
+                      </div>
+
+                      <div class="col-auto ps-5">
+                        <input type="text" readonly class="form-control-plaintext text-white" value="Descripcion de la Imagen">
+                      </div>
+
+                      <div class="col-auto">
+                        <label for="DescPierDer" class="visually-hidden"></label>
+                        <input type="text" class="form-control" id="DescPierDer">
+                      </div>
+
+                    </form>
+
+                    <form class="row g-2 pt-3">
+
+                      <h6 class="text-white">Pantorilla izquierda</h6>
+
+                      <div class="col-auto">
+
+                        <label for="PanIzq" class="form-label text-white">Imagen</label>
+                        <input class="form-control form-control-sm" id="PanIzq" type="file">
+
+                      </div>
+
+                      <div class="col-auto ps-5">
+                        <input type="text" readonly class="form-control-plaintext text-white" value="Descripcion de la Imagen">
+                      </div>
+
+                      <div class="col-auto">
+                        <label for="DescPanIzq" class="visually-hidden"></label>
+                        <input type="text" class="form-control" id="DescPanIzq">
+                      </div>
+
+                    </form>
+
+                    <form class="row g-2 pt-3">
+
+                      <h6 class="text-white">Pantorilla derecha</h6>
+
+                      <div class="col-auto">
+
+                        <label for="PanDer" class="form-label text-white">Imagen</label>
+                        <input class="form-control form-control-sm" id="PanDer" type="file">
+
+                      </div>
+
+                      <div class="col-auto ps-5">
+                        <input type="text" readonly class="form-control-plaintext text-white" value="Descripcion de la Imagen">
+                      </div>
+
+                      <div class="col-auto">
+                        <label for="DescPanDer" class="visually-hidden"></label>
+                        <input type="text" class="form-control" id="DescPanDer">
+                      </div>
+
+                    </form>
+
+                    <form class="row g-2 pt-3">
+
+                      <h6 class="text-white">Tobillo izquierdo</h6>
+
+                      <div class="col-auto">
+
+                        <label for="TobIzq" class="form-label text-white">Imagen</label>
+                        <input class="form-control form-control-sm" id="TobIzq" type="file">
+
+                      </div>
+
+                      <div class="col-auto ps-5">
+                        <input type="text" readonly class="form-control-plaintext text-white" value="Descripcion de la Imagen">
+                      </div>
+
+                      <div class="col-auto">
+                        <label for="DescTobIzq" class="visually-hidden"></label>
+                        <input type="text" class="form-control" id="DescTobIzq">
+                      </div>
+
+                    </form>
+
+                    <form class="row g-2 pt-3">
+
+                      <h6 class="text-white">Tobillo Derecho</h6>
+
+                      <div class="col-auto">
+
+                        <label for="TobDer" class="form-label text-white">Imagen</label>
+                        <input class="form-control form-control-sm" id="TobDer" type="file">
+
+                      </div>
+
+                      <div class="col-auto ps-5">
+                        <input type="text" readonly class="form-control-plaintext text-white" value="Descripcion de la Imagen">
+                      </div>
+
+                      <div class="col-auto">
+                        <label for="DescTobDer" class="visually-hidden"></label>
+                        <input type="text" class="form-control" id="DescTobDer">
+                      </div>
+
+                    </form>
+
+                    <form class="row g-2 pt-3">
+
+                      <h6 class="text-white">Talon Izquierdo</h6>
+
+                      <div class="col-auto">
+
+                        <label for="TalIzq" class="form-label text-white">Imagen</label>
+                        <input class="form-control form-control-sm" id="TalIzq" type="file">
+
+                      </div>
+
+                      <div class="col-auto ps-5">
+                        <input type="text" readonly class="form-control-plaintext text-white" value="Descripcion de la Imagen">
+                      </div>
+
+                      <div class="col-auto">
+                        <label for="DescTalIzq" class="visually-hidden"></label>
+                        <input type="text" class="form-control" id="DescTalIzq">
+                      </div>
+
+                    </form>
+
+                    <form class="row g-2 pt-3">
+
+                      <h6 class="text-white">Talon Derecho</h6>
+
+                      <div class="col-auto">
+
+                        <label for="TalDer" class="form-label text-white">Imagen</label>
+                        <input class="form-control form-control-sm" id="TalDer" type="file">
+
+                      </div>
+
+                      <div class="col-auto ps-5">
+                        <input type="text" readonly class="form-control-plaintext text-white" value="Descripcion de la Imagen">
+                      </div>
+
+                      <div class="col-auto">
+                        <label for="DescTalDer" class="visually-hidden"></label>
+                        <input type="text" class="form-control" id="DescTalDer">
+                      </div>
+
+                    </form>
+
+                    <form class="row g-2 pt-3">
+
+                      <h6 class="text-white">Pie Izquierdo</h6>
+
+                      <div class="col-auto">
+
+                        <label for="PieIzq" class="form-label text-white">Imagen</label>
+                        <input class="form-control form-control-sm" id="PieIzq" type="file">
+
+                      </div>
+
+                      <div class="col-auto ps-5">
+                        <input type="text" readonly class="form-control-plaintext text-white" value="Descripcion de la Imagen">
+                      </div>
+
+                      <div class="col-auto">
+                        <label for="DescPieIzq" class="visually-hidden"></label>
+                        <input type="text" class="form-control" id="DescPieIzq">
+                      </div>
+
+                    </form>
+
+                    <form class="row g-2 pt-3">
+
+                      <h6 class="text-white">Pie Derecho</h6>
+
+                      <div class="col-auto">
+
+                        <label for="PieDer" class="form-label text-white">Imagen</label>
+                        <input class="form-control form-control-sm" id="PieDer" type="file">
+
+                      </div>
+
+                      <div class="col-auto ps-5">
+                        <input type="text" readonly class="form-control-plaintext text-white" value="Descripcion de la Imagen">
+                      </div>
+
+                      <div class="col-auto">
+                        <label for="DescPieDer" class="visually-hidden"></label>
+                        <input type="text" class="form-control" id="DescPieDer">
+                      </div>
+
+                    </form>
+
+                    </div>
+
+                    <h2 class="ps-2 pt-5 text-white" id="HeadAcc">Accion</h2>
+
+                    <!--Comercio Robado-->
+                    <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example position-relative mt-2 overflow-hidden me-5" tabindex="0">
+                        <h4 id="ComRob" class="pb-3 text-white">Comercio Robado</h4>
+        
+                            <form class="row g-2">
+        
+                                <!-- Aqui tiene que sugerir comercios ya antes registrados y rellenar los demas -->
+                                <div class="col-auto ps-5">
+                                  <input type="text" readonly class="form-control-plaintext text-white"value="Nombre del Comercio">
+                                </div>
+        
+                                <div class="col-auto">
+                                  <label for="ApePat" class="visually-hidden"></label>
+                                  <input type="text" class="form-control" id="ApePat">
+                                </div>
+        
+                                <div class="col-auto ps-5">
+                                    <input type="text" readonly class="form-control-plaintext text-white" value="Total de robos">
+                                </div>
+        
+                                <div class="col-auto">
+                                    <label for="ApeMat" class="visually-hidden"></label>
+                                    <input type="text" class="form-control" id="ApeMat">
+                                </div>
+        
+                            </form>
+        
+                            <form class="row g-2 pt-3">
+        
+                                <div class="col-auto ps-5">
+                                  <input type="text" readonly class="form-control-plaintext text-white"value="Fechas registradas">
+                                </div>
+        
+                                <div class="col-auto">
+                                  <label for="Nom1" class="visually-hidden"></label>
+                                  <input type="text" class="form-control" id="Nom1">
+                                </div>
+        
+                                <div class="col-auto ps-5">
+                                    <input type="text" readonly class="form-control-plaintext text-white" value="Complice">
+                                </div>
+        
+                                <div class="col-auto">
+                                    <label for="Nom2" class="visually-hidden"></label>
+                                    <input type="text" class="form-control" id="Nom2">
+                                </div>
+        
+                            </form>
+        
+                    </div>
+                    <!--Robo-->
+                    <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example position-relative mt-2 overflow-hidden me-5" tabindex="0">
+                        <h4 id="Rob" class="pb-3 text-white">Robo</h4>
+        
+                            <form class="row g-2">
+        
+                                <div class="col-auto ps-5">
+                                  <input type="text" readonly class="form-control-plaintext text-white"value="Caracteristicas">
+                                </div>
+        
+                                <div class="col-auto">
+                                  <label for="RobComerc" class="visually-hidden"></label>
+                                  <input type="text" class="form-control" id="RobComerc">
+                                </div>
+
+                            </form>
+        
+                    </div>
+                    <!--Vehiculo-->
+                    <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example position-relative mt-2 overflow-hidden me-5" tabindex="0">
+                        <h4 id="Veh" class="pb-3 text-white">Vehiculo</h4>
+        
+                            <form class="row g-2">
+        
+                                <div class="col-auto ps-5">
+                                  <input type="text" readonly class="form-control-plaintext text-white"value="Marca">
+                                </div>
+        
+                                <div class="col-auto">
+                                  <label for="VehMarca" class="visually-hidden"></label>
+                                  <input type="text" class="form-control" id="VehMarca">
+                                </div>
+        
+                                <div class="col-auto ps-5">
+                                    <input type="text" readonly class="form-control-plaintext text-white" value="SubMarca">
+                                </div>
+        
+                                <div class="col-auto">
+                                    <label for="VehSMarca" class="visually-hidden"></label>
+                                    <input type="text" class="form-control" id="VehSMarca">
+                                </div>
+        
+                            </form>
+        
+                            <form class="row g-2 pt-3">
+        
+                                <div class="col-auto ps-5">
+                                  <input type="text" readonly class="form-control-plaintext text-white"value="Tipo de Vehiculo">
+                                </div>
+        
+                                <div class="col-auto">
+                                  <label for="VehTip" class="visually-hidden"></label>
+                                  <input type="text" class="form-control" id="VehTip">
+                                </div>
+        
+                                <div class="col-auto ps-5">
+                                    <input type="text" readonly class="form-control-plaintext text-white" value="Serie">
+                                </div>
+        
+                                <div class="col-auto">
+                                    <label for="VehSer" class="visually-hidden"></label>
+                                    <input type="text" class="form-control" id="VehSer">
+                                </div>
+        
+                            </form>
+        
+                            <form class="row g-2 pt-3">
+        
+                                <div class="col-auto ps-5">
+                                  <input type="text" readonly class="form-control-plaintext text-white"value="Placas">
+                                </div>
+        
+                                <div class="col-auto">
+                                  <label for="VehPlac" class="visually-hidden"></label>
+                                  <input type="text" class="form-control" id="VehPlac">
+                                </div>
+        
+                                <div class="col-auto ps-5">
+                                    <input type="text" readonly class="form-control-plaintext text-white" value="Motor">
+                                </div>
+        
+                                <div class="col-auto">
+                                    <label for="VehMot" class="visually-hidden"></label>
+                                    <input type="text" class="form-control" id="VehMot">
+                                </div>
+        
+                            </form>
+        
+                            <form class="row g-2 pt-3">
+        
+                                <div class="col-auto ps-5">
+                                  <input type="text" readonly class="form-control-plaintext text-white"value="Modelo">
+                                </div>
+        
+                                <div class="col-auto">
+                                  <label for="VehMod" class="visually-hidden"></label>
+                                  <input type="text" class="form-control" id="VehMod">
+                                </div>
+        
+                                <div class="col-auto ps-5">
+                                    <input type="text" readonly class="form-control-plaintext text-white"value="Descripcion de la Imagen">
+                                  </div>
+        
+                                  <div class="col-auto">
+                                    <label for="VehImgDesc" class="visually-hidden"></label>
+                                    <input type="text" class="form-control" id="ImgVehDesc">
+                                  </div>
+        
+                            </form>
+        
+                            <form class="row g-2 pt-3 ps-5">
+
+                                <div class="col-auto">
+
+                                    <label for="VehImg" class="form-label text-white">Imagen</label>
+                                    <input class="form-control form-control-sm" id="ImgVeh" type="file">
+
+                                </div>
+
+                            </form>
+        
+                    </div>
+                    <!--Datos de Detencion-->
+                    <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example position-relative mt-2 overflow-hidden me-5" tabindex="0">
+                        <h4 id="DatDet" class="pb-3 text-white">Datos de detención</h4>
+        
+                            <form class="row g-2">
+        
+                                <div class="col-auto ps-5">
+                                  <input type="text" readonly class="form-control-plaintext text-white"value="Motivo de la detencion">
+                                </div>
+        
+                                <div class="col-auto">
+                                  <label for="MotDet" class="visually-hidden"></label>
+                                  <input type="text" class="form-control" id="MotDet">
+                                </div>
+        
+                                <div class="col-auto ps-5">
+                                    <input type="text" readonly class="form-control-plaintext text-white" value="Lugar de la detencion">
+                                </div>
+        
+                                <div class="col-auto">
+                                    <label for="LugDet" class="visually-hidden"></label>
+                                    <input type="text" class="form-control" id="LugDet">
+                                </div>
+        
+                            </form>
+        
+                            <form class="row g-2 pt-3">
+        
+                                <div class="col-auto ps-5">
+                                  <input type="text" readonly class="form-control-plaintext text-white"value="Colonia de la detencion">
+                                </div>
+        
+                                <div class="col-auto">
+                                  <label for="ColDet" class="visually-hidden"></label>
+                                  <input type="text" class="form-control" id="ColDet">
+                                </div>
+        
+                                <div class="col-auto ps-5">
+                                    <input type="text" readonly class="form-control-plaintext text-white" value="Sector de la detencion">
+                                </div>
+        
+                                <div class="col-auto">
+                                    <label for="SecDet" class="visually-hidden"></label>
+                                    <input type="text" class="form-control" id="SecDet">
+                                </div>
+        
+                            </form>
+        
+                            <form class="row g-2 pt-3">
+        
+                                <div class="col-auto ps-5">
+                                  <input type="text" readonly class="form-control-plaintext text-white"value="Hora de la detencion">
+                                </div>
+        
+                                <div class="col-auto">
+                                  <label for="HorDet" class="visually-hidden"></label>
+                                  <input type="text" class="form-control" id="HorDet">
+                                </div>
+        
+                            </form>
+        
+                    </div>
+                    <!--Modus Operandi-->
+                    <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example position-relative mt-2 overflow-hidden me-5" tabindex="0">
+                        <h4 id="ModOpe" class="pb-3 text-white">Modus Operandis</h4>
+        
+                            <form class="row g-2">
+        
+                                <div class="form-check col-auto ps-5">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="ModVio">
+                                    <label class="form-check-label text-white" for="ModVio">
+                                      Con Violencia <br>
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="ModSVio">
+                                    <label class="form-check-label text-white" for="ModSVio">
+                                      Sin violencia
+                                    </label>
+                                </div>
+
+                            </form>
+
+                    </div>
+                    <!--Arma-->
+                    <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example position-relative mt-2 overflow-hidden me-5" tabindex="0">
+                        <h4 id="Arm" class="pb-3 text-white">Arma</h4>
+        
+                            <form class="row g-2">
+        
+                                <div class="col-auto ps-5">
+                                  <input type="text" readonly class="form-control-plaintext text-white"value="Tipo de arma">
+                                </div>
+
+                                <div class="form-check col-auto">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="TipArmFuego">
+                                    <label class="form-check-label text-white" for="TipArmFuego">
+                                      Arma de fuego <br>
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="TipArmProh">
+                                    <label class="form-check-label text-white" for="TipArmProh">
+                                      Arma prohibida
+                                    </label>
+                                </div>
+                             </form>
+
+                             <form class="row g-2 pt-3">   
+                                <div class="col-auto ps-5">
+                                    <input type="text" readonly class="form-control-plaintext text-white" value="Tamaño de arma">
+                                </div>
+                                
+                                <div class="form-check col-auto">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="TamArmCorta">
+                                    <label class="form-check-label text-white" for="TamArmCorta">
+                                      Corta <br>
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="TamArmLarga">
+                                    <label class="form-check-label text-white" for="TamArmLarga">
+                                      Larga
+                                    </label>
+                                </div>
+                                
+        
+                            </form>
+        
+                    </div>
+                    <!--Registro de Detenciones-->
+                    <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example position-relative mt-2 overflow-hidden me-5" tabindex="0">
+                        <h4 id="RegDet" class="pb-3 text-white">Datos personales</h4>
+        
+                            <form class="row g-2">
+        
+                                <div class="col-auto ps-5">
+                                  <input type="text" readonly class="form-control-plaintext text-white"value="Registro de Detencion">
+                                </div>
+        
+                                <div class="col-auto pb-5">
+                                  <label for="RegDete" class="visually-hidden"></label>
+                                  <input type="text" class="form-control" id="RegDete">
+                                </div>
+        
+                            </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!--Fuera de form-->
+
+  
+    </main>
+
+</body>
+
+</html>

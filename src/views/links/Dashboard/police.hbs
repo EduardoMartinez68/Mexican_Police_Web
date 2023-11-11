@@ -18,10 +18,11 @@
                             </thead>
                         </table>
                     </div>
-                    
+
+
                     <div class="card-body card-information">
                         <!--this add all the police-->
-                        {{#each saucers}}
+                        {{#each users}}
                             <div class="card mb-4">
                                 <div class="card-body">
                                     {{#if img}}
@@ -29,7 +30,9 @@
                                     {{else}}
                                         <img class="img-info" src="https://cdn-icons-png.flaticon.com/512/1022/1022331.png">
                                     {{/if}}
-                                    <strong>{{name}}</strong>
+                                    <strong>{{first_name}} {{second_name}} {{last_name_father}} {{last_name_mother}}</strong>
+                                    <button id="{{id_login}}" onclick="edit_department(this.id)"><i class="fi-department fi-sr-pencil"></i></button>
+                                    <button id="{{id_login}}" onclick="delate_user(this.id)"><i class="fi-department fi-sr-trash"></i></button>
                                 </div>
                             </div>
                         {{/each}}
@@ -72,5 +75,16 @@
         </div>
     </div>
 
+    <script>
+        async function delate_user(id){
+            if(await questionMessage('Delate user','Do you want to delete this user?')){
+                window.location.href = "/Mexico/"+id+"/delate-user";
+            }
+        }
+
+        async function edit_department(id){
+            window.location.href = "/Mexico/"+id+"/edit-user";
+        }
+    </script>
     <script src="/js/other.js"></script>
 </body>
