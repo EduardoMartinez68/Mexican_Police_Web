@@ -4,13 +4,13 @@ module.exports={
         if(req.isAuthenticated()){
             return next();
         }
-        return res.redirect('/Mexico/login');
+        return res.redirect('/Mexico/signin');
     },
 
     isNotLoggedIn(req,res,next){
         if(!req.isAuthenticated()){
             return next();
         }
-        return res.redirect('/Mexico/home');
+        return res.redirect('/Mexico/dashboard');
     }
 };

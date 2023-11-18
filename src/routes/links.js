@@ -2,12 +2,15 @@ const express =require('express');
 const router=express.Router();
 
 const pool=require('../database');
+const helpers=require('../lib/helpers');
+
+const {isLoggedIn,isNotLoggedIn}=require('../lib/auth');
 
 router.get('/login',(req,res)=>{
     res.render('links/Login/login');
 });
 
-router.get('/dashboard',(req,res)=>{
+router.get('/dashboard',isLoggedIn,(req,res)=>{
     res.render('links/Dashboard/dashboard');
 });
 
@@ -41,17 +44,16 @@ async function search_data_session(user){
 
 
 ///-----------------------------------------------------------------------------------------users
-router.get('/add-user',(req,res)=>{
+router.get('/add-user',isLoggedIn,(req,res)=>{
     res.render('links/Dashboard/addUser');
 });
 
 
 router.post('/add-user',async(req,res)=>{
-
     if(confirm_password(req)){
-        const newUser=get_data_user(req);
+        const newUser=await get_data_user(req);
         if(await add_a_new_user(newUser)){
-            res.redirect('/users');
+            res.redirect('/Mexico/users');
         }
         else{
             res.send('no recived');
@@ -67,8 +69,22 @@ function confirm_password(req){
     return (password==confirm_password) && (password!='');
 }
 
-function get_data_user(req){
+async function get_data_user(req){
     const {first_name,second_name,last_name_f,last_name_m,user,email,password,level}=req.body;
+
+    if (password == undefined || password == null) {
+        const newUser={
+            first_name,
+            second_name,
+            last_name_f,
+            last_name_m,
+            user,
+            email,
+            level
+        };
+        return newUser;
+    }
+
     const newUser={
         first_name,
         second_name,
@@ -79,15 +95,14 @@ function get_data_user(req){
         password,
         level
     };
-
+    newUser.password=await helpers.encrytPassword(password);
     return newUser;
 }
 
 async function add_a_new_user(user){
-    var queryText = 'INSERT INTO usuario (first_name, second_name, last_name_father,last_name_mother,usuario,password,id_nivel)'
-        +'VALUES ($1, $2, $3, $4, $5, $6, $7)';
+    var queryText = 'INSERT INTO usuario (nombre, second_name, last_name_father, last_name_mother, username, correo, password, id_nivel) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?)';
 
-    var values = [        
+    var values = [    
         user.first_name,
         user.second_name,
         user.last_name_f,
@@ -95,9 +110,10 @@ async function add_a_new_user(user){
         user.user,
         user.email,
         user.password,
-        user.level
+        parseInt(user.level)
     ] 
-
+    values.password=await helpers.encrytPassword(user.password);
+    console.log(values);
     //we will see if can add the user to the database
     try{
         await pool.query(queryText, values);
@@ -109,19 +125,19 @@ async function add_a_new_user(user){
 };
 
 
-router.get('/users',async(req,res)=>{
+router.get('/users',isLoggedIn,async(req,res)=>{
     const users=await search_users();
     console.log(users)
     res.render('links/Dashboard/police',{users});
 });
 
 async function search_users(){
-    var queryText = 'select * from usuario';
+    var queryText = 'SELECT * FROM usuario';
 
     //we will see if can add the user to the database
     try{
         const users=await pool.query(queryText)
-        return users.rows
+        return users
     } catch (error) {
         return [];
     }
@@ -129,7 +145,7 @@ async function search_users(){
 
 router.get('/:id/delate-user',async(req,res)=>{
     const {id}=req.params;
-    var queryText = 'DELETE FROM usuario WHERE id_login = $1';
+    var queryText = 'DELETE FROM usuario WHERE ID_usuario = ?';
     var values = [parseInt(id)];
     console.log(values)
     try {
@@ -141,17 +157,20 @@ router.get('/:id/delate-user',async(req,res)=>{
     res.redirect('/Mexico/users');
 });
 
-router.get('/:id/edit-user',async(req,res)=>{
+router.get('/:id/edit-user',isLoggedIn,async(req,res)=>{
     const {id}=req.params;
     const user=await get_user(id);
+    user.password=
     res.render('links/Dashboard/editUser',{user});
 });
 
-router.post('/:id/edit-user',async(req,res)=>{
+router.post('/:id/edit-user',isLoggedIn,async(req,res)=>{
     const {id}=req.params;
-    if(confirm_password(req)){
-        const user=get_data_user(req);
-        if(await update_user(id,user)){
+    const row=await pool.query('SELECT * FROM usuario where ID_usuario=?',[id]);
+    if(row.length>0){
+        const user=row[0];
+        const use=await get_data_user(req);
+        if(await update_user(id,use)){
             res.redirect('/Mexico/users');
         }
         else{
@@ -164,17 +183,17 @@ router.post('/:id/edit-user',async(req,res)=>{
 });
 
 async function update_user(id,user){
-    var queryText = 'UPDATE usuario SET first_name = $1, second_name = $2, last_name_father = $3, last_name_mother = $4, usuario = $5,email = $6, password = $7, id_nivel = $8 WHERE id_login = $9';
-
-    var values = [        
+    var queryText = 'UPDATE usuario SET nombre = ?, second_name = ?, last_name_father = ?, last_name_mother = ?, username = ?, correo = ?, ID_nivel = ? WHERE ID_usuario = ?';
+    console.log(user)
+    console.log(user[0])
+    const values = [        
         user.first_name,
         user.second_name,
         user.last_name_f,
         user.last_name_m,
         user.user,
         user.email,
-        user.password,
-        user.level,
+        parseInt(user.level),
         id
     ] 
 
@@ -190,32 +209,32 @@ async function update_user(id,user){
 
 
 async function get_user(id){
-    var queryText = 'select * from usuario WHERE id_login = $1';
+    var queryText = 'select * from usuario WHERE ID_usuario = ?';
     var values = [parseInt(id)];
     //we will see if can add the user to the database
     try{
         const users=await pool.query(queryText,values)
-        return users.rows;
+        return users;
     } catch (error) {
         return [];
     }
 };
 ///-----------------------------------------------------------------------------------------criminals
-router.get('/from-criminals',(req,res)=>{
+router.get('/from-criminals',isLoggedIn,(req,res)=>{
     res.render('links/From/criminals');
 });
 
 ///-----------------------------------------------------------------------------------------users
 
-router.get('/criminals',(req,res)=>{
+router.get('/criminals',isLoggedIn,(req,res)=>{
     res.render('links/Dashboard/criminals');
 });
 
-router.get('/upload-criminals',(req,res)=>{
+router.get('/upload-criminals',isLoggedIn,(req,res)=>{
     res.render('links/Dashboard/DataCaptureCriminal');
 });
 
-router.get('/profile',(req,res)=>{
+router.get('/profile',isLoggedIn,(req,res)=>{
     res.render('links/Login/profile');
 });
 

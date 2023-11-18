@@ -14,14 +14,14 @@
                 </div>
                 <div class="card-body">
                     {{#each user}}
-                        <form method="POST" action="/Mexico/{{id_login}}/edit-user">
+                        <form method="POST" action="/Mexico/{{ID_usuario}}/edit-user">
                             <div class="form-row m-b-55">
                                 <div class="name">Nombre</div>
                                 <div class="value">
                                     <div class="row row-space">
                                         <div class="col-2">
                                             <div class="input-group-desc">
-                                                <input class="input--style-5" type="text" name="first_name" autofocus required value="{{first_name}}"> 
+                                                <input class="input--style-5" type="text" name="first_name" autofocus required value="{{nombre}}"> 
                                                 <label class="label--desc">Primer nombre</label>
                                             </div>
                                         </div>
@@ -60,7 +60,7 @@
                                 <div class="name">Usuario</div>
                                 <div class="value">
                                     <div class="input-group-desc">
-                                        <input class="input--style-5" type="text" name="user" required value="{{usuario}}">
+                                        <input class="input--style-5" type="text" name="user" required value="{{username}}">
                                         <label class="label--desc">Nombre de usuario</label>
                                     </div>
                                 </div>
@@ -69,24 +69,7 @@
                                 <div class="name">Email</div>
                                 <div class="value">
                                     <div class="input-group">
-                                        <input class="input--style-5" type="email" name="email" required value="{{email}}">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-                                <div class="name">Password</div>
-                                <div class="value">
-                                    <div class="input-group">
-                                        <input class="input--style-5" type="password" name="password" required value="{{password}}">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="name">Confirmar Password</div>
-                                <div class="value">
-                                    <div class="input-group">
-                                        <input class="input--style-5" type="password" name="confirm_password" required>
+                                        <input class="input--style-5" type="email" name="email" required value="{{correo}}">
                                     </div>
                                 </div>
                             </div>
@@ -96,7 +79,7 @@
                                 <div class="value">
                                     <div class="input-group">
                                         <div class="rs-select2 js-select-simple select--no-search">
-                                            <select name="level" class="form-control" id="{{id_nivel}}">
+                                            <select name="level" class="form-control" id="{{ID_nivel}}">
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
                                                 <option value="3">3</option>

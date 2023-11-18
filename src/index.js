@@ -12,6 +12,7 @@ const path=require('path');
 
 //Initialization
 const app=express();
+require('./lib/passport.js');
 
 //Settings
 app.set('port',process.env.PORT || 4000);
@@ -26,8 +27,8 @@ app.engine('.hbs',engine({ //we will create the engine for the web
 app.set('view engine','.hbs');
 
 //Middlewares
-//middlewares
 require('dotenv').config();
+/*
 const {APP_PG_USER,APP_PG_HOST,APP_PG_DATABASE,APP_PG_PASSWORD,APP_PG_PORT}=process.env; //this code is for get the data of the database
 
 const pg = require('pg');
@@ -48,7 +49,12 @@ app.use(session({
       }),
     //store: new MySQLStore(pool)
 }));
-
+*/
+app.use(session({
+    secret: 'FudSession',
+    resave: false,
+    saveUninitialized: false
+}));
 app.use(flash());
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended:false}));
@@ -67,6 +73,9 @@ app.use(multer({storage: storage}).single('image'));
 
 //Global variables
 app.use((req,res,next)=>{
+    app.locals.success=req.flash('success');
+    app.locals.message=req.flash('message');
+    app.locals.user=req.user;
     next();
 });
 

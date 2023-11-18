@@ -3,12 +3,19 @@ const router=express.Router();
 const passport=require('passport');
 const {isLoggedIn,isNotLoggedIn}=require('../lib/auth');
 
-router.get('/Mexico/signup',isNotLoggedIn,(req,res)=>{
-    res.render('links/web/singup');
+router.get('/Mexico/signin',isNotLoggedIn,(req,res)=>{
+    res.render('links/Login/login');
 });
 
+router.post('/Mexico/signin',passport.authenticate('local.signin',{
+    successRedirect:'/Mexico/dashboard',
+    failureRedirect:'/Mexico/signin',
+    failureFlash:true
+}));
+
+
 router.get('/Mexico/login',isNotLoggedIn,(req,res)=>{
-    res.render('links/web/login');
+    res.render('links/Login/login');
 });
 
 router.get('/Mexico/logout',(req,res)=>{
@@ -21,11 +28,10 @@ router.get('/Mexico/logout',(req,res)=>{
     })
 });
 
-router.post('/Mexico/:id/add-department',passport.authenticate('local.add_department',{
-    successRedirect: '/Mexico/home', // /fud/:id/food-department
-    failureRedirect: '/Mexico/home',
-    failureFlash:true
-}));
-
+router.get('/Mexico/logout',(req,res)=>{
+    console.log('enter')
+    req.logOut();
+    res.redirect('/Mexico/signin');
+})
 
 module.exports=router;

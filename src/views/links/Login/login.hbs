@@ -3,13 +3,13 @@
 </head>
 <div class="login-box">
     <h2>Login</h2>
-    <form>
+    <form POST="/Mexico/signin" id="loginForm" method="POST" action="/Mexico/signin">
         <div class="user-box">
-            <input type="text" name="" required="">
+            <input type="text" name="username" required="">
             <label>Username</label>
         </div>
         <div class="user-box">
-            <input type="password" name="" required="">
+            <input type="password" name="password" required="">
             <label>Password</label>
         </div>
         <a href="#">
@@ -21,3 +21,19 @@
         </a>
     </form>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Busca el enlace
+        var link = document.querySelector('.login-box a');
+
+        // Agrega un evento al hacer clic en el enlace
+        link.addEventListener('click', function() {
+            // Busca el formulario por su ID
+            var form = document.getElementById('loginForm');
+
+            // Envía el formulario al hacer clic en el enlace
+            form.submit();
+        });
+    });
+</script>
