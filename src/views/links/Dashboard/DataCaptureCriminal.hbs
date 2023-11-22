@@ -13,8 +13,12 @@
 				<h4 class="text-white">(xls, cvs)</h4>
 				<div id="ExaminarEspacio" class="bg-examinar">
 					<br /> <br />
-					<a id="Examinar" class="btn btn-secondary" href="#Logout">Examinar</a>
 					<h3> <br /> (Espacio para arrastrarlo)</h3>
+					<form action="/Mexico/upload-criminals" method="post" enctype="multipart/form-data">
+						<input id="Examinar" class="btn btn-secondary" type="file" name="file">
+						<br><br><br>
+						<input type="submit" class="btn btn-secondary" value="Subir archivo">
+					</form>
 				</div>
 			</div>
 		</div>

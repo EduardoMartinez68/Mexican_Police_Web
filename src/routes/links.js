@@ -15,7 +15,7 @@ router.get('/dashboard',isLoggedIn,(req,res)=>{
 });
 
 async function search_data_session(user){
-    var queryText = 'select * from session (first_name, second_name, last_name_father,last_name_mother,usuario,password,id_nivel)'
+    var queryText = 'select * from session (first_name, second_name, last_name_father,last_name_mother,usuario,password,ID_nivel)'
         +'VALUES ($1, $2, $3, $4, $5, $6, $7)';
 
     var values = [        
@@ -219,19 +219,41 @@ async function get_user(id){
         return [];
     }
 };
+
 ///-----------------------------------------------------------------------------------------criminals
 router.get('/from-criminals',isLoggedIn,(req,res)=>{
     res.render('links/From/criminals');
+});
+
+///-----------------------------------------------------------------------------------------store
+router.get('/from-store',isLoggedIn,(req,res)=>{
+    res.render('links/From/formStore');
+});
+
+
+///-----------------------------------------------------------------------------------------read xlsx
+const XLSX=require('xlsx');
+const multer=require('multer')
+function read_xlsx(path){
+    const workBook=XLSX.readFile(path);
+    const workBookSheets=workBook.SheetNames;
+
+    console.log(workBookSheets);
+}
+
+router.post('/upload-criminals1',(req,res)=>{
+    console.log(req);
+    res.redirect('/upload-criminals');
+});
+
+router.get('/upload-criminals',isLoggedIn,(req,res)=>{
+    res.render('links/Dashboard/DataCaptureCriminal');
 });
 
 ///-----------------------------------------------------------------------------------------users
 
 router.get('/criminals',isLoggedIn,(req,res)=>{
     res.render('links/Dashboard/criminals');
-});
-
-router.get('/upload-criminals',isLoggedIn,(req,res)=>{
-    res.render('links/Dashboard/DataCaptureCriminal');
 });
 
 router.get('/profile',isLoggedIn,(req,res)=>{

@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link href="/css/from/fromCriminals.css" rel="stylesheet">
+
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+
+    .b-example-divider {
+      width: 100%;
+      height: 3rem;
+      background-color: rgba(0, 0, 0, .31);
+      border: solid rgba(0, 0, 0, .15);
+      border-width: 1px 0;
+      box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, 0), inset 0 .125em .5em rgba(0, 0, 0, .15);
+    }
+
+    .b-example-vr {
+      flex-shrink: 0;
+      width: 1.5rem;
+      height: 100vh;
+    }
+
+    .bi {
+      vertical-align: -.125em;
+      fill: currentColor;
+    }
+
+    .nav-scroller {
+      position: relative;
+      z-index: 2;
+      height: 2.75rem;
+      overflow-y: auto;
+    }
+
+    .nav-scroller .nav {
+      display: flex;
+      flex-wrap: nowrap;
+      padding-bottom: 1rem;
+      margin-top: -1px;
+      overflow-x: auto;
+      text-align: center;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .btn-bd-primary {
+      --bd-violet-bg: #712cf9;
+      --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+
+      --bs-btn-font-weight: 600;
+      --bs-btn-color: var(--bs-white);
+      --bs-btn-bg: var(--bd-violet-bg);
+      --bs-btn-border-color: var(--bd-violet-bg);
+      --bs-btn-hover-color: var(--bs-white);
+      --bs-btn-hover-bg: #6528e0;
+      --bs-btn-hover-border-color: #6528e0;
+      --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+      --bs-btn-active-color: var(--bs-btn-hover-color);
+      --bs-btn-active-bg: #5a23c8;
+      --bs-btn-active-border-color: #5a23c8;
+    }
+
+    .bd-mode-toggle {
+      z-index: 1500;
+    }
+
+    .bd-mode-toggle .dropdown-menu .active .bi {
+      display: block !important;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <main class="d-flex ms-1 me-1 bgcolor">
+
+    <!-- Sidebar -->
+    <aside class="bd-sidebar d-flex flex-column align-items-stretch flex-shrink-0 " style="width: 280px;">
+      <center>
+        <a class="d-flex align-items-center pb-3 mb-3 link-body-emphasis text-decoration-none borde"
+          aria-disabled="true">
+          <span class="fs-5 fw-semibold mt-3 ps-4 text-white">Navegacion</span>
+        </a>
+      </center>
+      <ul class="list-group list-group-flush scrollarea">
+
+        <li class="mb-1 justify-content-center">
+
+          <div class="col-auto ">
+            <center>
+              <button type="submit" class="btn btn-primar text-white" href="">Confirmar y Subir</button>
+            </center>
+          </div>
+        </li>
+      </ul>
+    </aside>
+
+
+
+    <!-- Separador -->
+    <aside class="bd-sidebar b-example-divider b-example-vr"></aside>
+
+    <!-- Form -->
+    <div>
+      <!--Top-->
+      <div>
+        <div class="bd-example my-3 ps-3">
+          <nav id="navbar-example2" class="navbar px-3 bgcolor2">
+            <a class="navbar-brand text-white" href="">Captura</a>
+            <ul class="nav nav-pills">
+
+              <li class="nav-item">
+                <a class="btn btn-primar active" href="">Menu principal</a>
+              </li>
+          </nav>
+
+          <h2 class="ps-2 pb-3 pt-3 text-white">Robo a comercio</h2>
+
+
+
+          <!--Datos Personales-->
+          <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0"
+            class="scrollspy-example position-relative mt-2 overflow-hidden me-5 text-white" tabindex="0">
+            <h4 id="DatPer" class="pb-3 text-white">Datos personales</h4>
+
+            <form class="row g-2 text-white">
+
+              <div class="col-auto ps-5">
+                <input type="text" readonly class="form-control-plaintext text-white" value="Nombre del comercio:">
+              </div>
+
+              <div class="col-auto">
+                <label for="comercio" class="visually-hidden"></label>
+                <input type="text" class="form-control" id="comercio">
+              </div>
+
+              <div class="col-auto ps-5">
+                <input type="text" readonly class="form-control-plaintext text-white" value="Dia:">
+              </div>
+
+              <div class="col-auto">
+                <div class="custom-select">
+                  <select id="dia">
+                    <option value="0">Selecciona una opcion</option>
+                    <option value="1">1</option>
+                    <option value=">2" </option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    <option value="24">24</option>
+                    <option value="25">25</option>
+                    <option value="26">26</option>
+                    <option value="27">27</option>
+                    <option value="28">28</option>
+                    <option value="29">29</option>
+                    <option value="30">30</option>
+                    <option value="31">31</option>
+                  </select>
+                </div>
+              </div>
+            </form>
+
+            <form class="row g-2 pt-3">
+
+              <div class="col-auto ps-5">
+                <input type="text" readonly class="form-control-plaintext text-white" value="Dia de la semana:">
+              </div>
+
+              <div class="col-auto">
+                <div class="custom-select">
+                  <select id="semana">
+                    <option value="0">Selecciona una opcion</option>
+                    <option value="1">Lunes</option>
+                    <option value="2">Martes</option>
+                    <option value="3">Miercoles</option>
+                    <option value="4">Jueves</option>
+                    <option value="5">Viernes</option>
+                    <option value="6">Sabado</option>
+                    <option value="7">Domingo</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-auto ps-5">
+                <input type="text" readonly class="form-control-plaintext text-white" value="Mes:">
+              </div>
+
+              <div class="col-auto">
+                <div class="custom-select">
+                  <select id="mes">
+                    <option value="0">Selecciona una opcion</option>
+                    <option value="1">Enero</option>
+                    <option value="2">Febrero</option>
+                    <option value="3">Marzo</option>
+                    <option value="4">Abril</option>
+                    <option value="5">Mayo</option>
+                    <option value="6">Junio</option>
+                    <option value="7">Julio</option>
+                    <option value="8">Agosto</option>
+                    <option value="9">Septiembre</option>
+                    <option value="10">Octubre</option>
+                    <option value="11">Noviembre</option>
+                    <option value="12">Diciembre</option>
+                  </select>
+                </div>
+              </div>
+
+            </form>
+
+            <form class="row g-2 pt-3">
+
+              <div class="col-auto ps-5">
+                <input type="text" readonly class="form-control-plaintext text-white" value="Horario:">
+              </div>
+
+              <div class="col-auto">
+                <label for="Horario" class="visually-hidden"></label>
+                <input type="text" class="form-control" id="Horario">
+              </div>
+
+              <div class="col-auto ps-5">
+                <input type="text" readonly class="form-control-plaintext text-white" value="Coordenadas:">
+              </div>
+
+              <div class="col-auto">
+                <label for="Coor" class="visually-hidden"></label>
+                <input type="text" class="form-control" id="Coor">
+              </div>
+
+            </form>
+
+            <form class="row g-2 pt-3">
+
+              <div class="col-auto ps-5">
+                <input type="text" readonly class="form-control-plaintext text-white" value="Calle/Colonia:">
+              </div>
+
+              <div class="col-auto">
+                <label for="Calle" class="visually-hidden"></label>
+                <input type="text" class="form-control" id="Calle">
+              </div>
+
+              <div class="col-auto ps-5">
+                <input type="text" readonly class="form-control-plaintext text-white" value="Ubicacion:">
+              </div>
+
+              <div class="col-auto">
+                <label for="Ubi" class="visually-hidden"></label>
+                <input type="text" class="form-control" id="Ubi">
+              </div>
+            </form>
+            <form class="row g-2 pt-3">
+              <div class="col-auto ps-5">
+                <input type="text" readonly class="form-control-plaintext text-white" value="Victima:">
+              </div>
+
+              <div class="col-auto">
+                <label for="Vic" class="visually-hidden"></label>
+                <input type="text" class="form-control" id="Vic">
+              </div>
+
+              <div class="col-auto ps-5">
+                <input type="text" readonly class="form-control-plaintext text-white" value="Victimario:">
+              </div>
+
+              <div class="col-auto">
+                <label for="Vict" class="visually-hidden"></label>
+                <input type="text" class="form-control" id="Vict">
+              </div>
+            </form>
+            <form class="row g-2 pt-3">
+              <div class="col-auto ps-5">
+                <input type="text" readonly class="form-control-plaintext text-white" value="Descripcion:">
+              </div>
+
+              <div class="col-auto">
+                <label for="Des" class="visually-hidden"></label>
+                <input type="text" class="form-control" id="Des">
+              </div>
+
+              <div class="col-auto ps-5">
+                <input type="text" readonly class="form-control-plaintext text-white" value="Caracter especifico:">
+              </div>
+
+              <div class="col-auto">
+                <label for="Car" class="visually-hidden"></label>
+                <input type="text" class="form-control" id="Car">
+              </div>
+            </form>
+            <form class="row g-2 pt-3">
+              <div class="col-auto ps-5">
+                <input type="text" readonly class="form-control-plaintext text-white" value="Arma prohibido:">
+              </div>
+
+              <div class="col-auto">
+                <label for="ArmaP" class="visually-hidden"></label>
+                <input type="text" class="form-control" id="ArmaP">
+              </div>
+
+              <div class="col-auto ps-5">
+                <input type="text" readonly class="form-control-plaintext text-white" value="Arma de fuego:">
+              </div>
+
+              <div class="col-auto">
+                <label for="ArmaF" class="visually-hidden"></label>
+                <input type="text" class="form-control" id="ArmaF">
+              </div>
+            </form>
+            <form class="row g-2 pt-3">
+              <div class="col-auto ps-5">
+                <input type="text" readonly class="form-control-plaintext text-white" value="Traslada:">
+              </div>
+
+              <div class="col-auto">
+                <label for="Tra" class="visually-hidden"></label>
+                <input type="text" class="form-control" id="Tra">
+              </div>
+
+              <div class="col-auto ps-5">
+                <input type="text" readonly class="form-control-plaintext text-white" value="Marca:">
+              </div>
+
+              <div class="col-auto">
+                <label for="Mar" class="visually-hidden"></label>
+                <input type="text" class="form-control" id="Mar">
+              </div>
+            </form>
+            <form class="row g-2 pt-3">
+              <div class="col-auto ps-5">
+                <input type="text" readonly class="form-control-plaintext text-white" value="Placas:">
+              </div>
+
+              <div class="col-auto">
+                <label for="Pla" class="visually-hidden"></label>
+                <input type="text" class="form-control" id="Pla">
+              </div>
+
+              <div class="col-auto ps-5">
+                <input type="text" readonly class="form-control-plaintext text-white" value="Robo:">
+              </div>
+
+              <div class="col-auto">
+                <label for="Robo" class="visually-hidden"></label>
+                <input type="text" class="form-control" id="Robo">
+              </div>
+            </form>
+            <form class="row g-2 pt-3">
+              <div class="col-auto ps-5">
+                <input type="text" readonly class="form-control-plaintext text-white" value="Color:">
+              </div>
+
+              <div class="col-auto">
+                <label for="Color" class="visually-hidden"></label>
+                <input type="text" class="form-control" id="Color">
+              </div>
+
+              <div class="col-auto ps-5">
+                <input type="text" readonly class="form-control-plaintext text-white" value="Monto robado aproximado:">
+              </div>
+
+              <div class="col-auto">
+                <label for="Mon" class="visually-hidden"></label>
+                <input type="text" class="form-control" id="Mon">
+              </div>
+            </form>
+            <form class="row g-2 pt-3">
+              <div class="col-auto ps-5">
+                <input type="text" readonly class="form-control-plaintext text-white" value="Detenido:">
+              </div>
+
+              <div class="col-auto">
+                <label for="Det" class="visually-hidden"></label>
+                <input type="text" class="form-control" id="Det">
+              </div>
+
+            </form>
+
+
+
+
+
+
+  </main>
+
+</body>
+
+</html>
