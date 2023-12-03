@@ -12,7 +12,8 @@
                         <table class="card-table">
                             <thead>
                                 <tr>
-                                    <th class="td1"><input type="text" placeholder="Busca a un policia..." class="form-control" autofocus></th>
+                                    <th class="td1"><input type="text" placeholder="Busca a un usuario..." class="form-control" name="usernameSearch" autofocus></th>
+                                    <th class="td2"><button class="btn" onclick="search_official()">🔎</button></th>
                                     <th class="td2"><button class="btn-add" onclick="nextWeb(this.id+'/add-user')">+</button></th>
                                 </tr>
                             </thead>
@@ -44,31 +45,61 @@
                 <!--This is the card for see the description of the product-->
                 <div class="card text-center mb-4">          
                     <div class="card-body">
-                        <label>user</label><br>
-                        <img class="img-description" src="https://cdn-icons-png.flaticon.com/512/1022/1022331.png"><br>
+                        {{#if user}}
+                            {{#each user}}
+                                <label>{{username}}</label><br>
+                                <img class="img-description" src="https://cdn-icons-png.flaticon.com/512/1022/1022331.png"><br>
 
-                        <strong>Name</strong>
-                        <br><br>
+                                <strong>{{nombre}} {{second_name}} {{last_name_father}} {{last_name_mother}}</strong>
+                                <br><br>
 
-                        <button class="card-btn-description"><i class="fi-item fi-rr-box-alt"></i>Edit</button>
-                        <button class="card-btn-description"><i class="fi-item fi-rr-time-past"></i>Delate</button>
-                        <br><br><br>
-                        <div class="card mb-4">
-                            <div class="card-bod">
-                            <table class="my-table-price">
-                                    <thead>
-                                        <tr>
-                                            <th><label>Email</label></th>
-                                            <th><label>Nivel</label></th>
-                                        </tr>
-                                        <tr>
-                                            <th><h6>user@Outlook.es</h6></th>
-                                            <th><h6>1</h6></th>
-                                        </tr>
-                                    </thead>
-                                </table>
+                                <button class="card-btn-description" id="{{ID_usuario}}" onclick="edit_department(this.id)"><i class="fi-item fi-rr-box-alt"></i>Edit</button>
+                                <button class="card-btn-description" id="{{ID_usuario}}" onclick="delate_user(this.id)"><i class="fi-item fi-rr-time-past"></i>Delate</button>
+                                <br><br><br>
+                                <div class="card mb-4">
+                                    <div class="card-bod">
+                                    <table class="my-table-price">
+                                            <thead>
+                                                <tr>
+                                                    <th><label>Email</label></th>
+                                                    <th><label>Nivel</label></th>
+                                                </tr>
+                                                <tr>
+                                                    <th><h6>{{correo}}</h6></th>
+                                                    <th><h6>{{ID_nivel}}</h6></th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                </div>
+                            {{/each}}
+                        {{else}}
+                            <label>user</label><br>
+                            <img class="img-description" src="https://cdn-icons-png.flaticon.com/512/1022/1022331.png"><br>
+
+                            <strong>Name</strong>
+                            <br><br>
+
+                            <button class="card-btn-description"><i class="fi-item fi-rr-box-alt"></i>Edit</button>
+                            <button class="card-btn-description"><i class="fi-item fi-rr-time-past"></i>Delate</button>
+                            <br><br><br>
+                            <div class="card mb-4">
+                                <div class="card-bod">
+                                <table class="my-table-price">
+                                        <thead>
+                                            <tr>
+                                                <th><label>Email</label></th>
+                                                <th><label>Nivel</label></th>
+                                            </tr>
+                                            <tr>
+                                                <th><h6>user@Outlook.es</h6></th>
+                                                <th><h6>1</h6></th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
                             </div>
-                        </div>
+                        {{/if}}
                     </div>
                 </div>
             </div>
@@ -77,13 +108,24 @@
 
     <script>
         async function delate_user(id){
-            if(await questionMessage('Delate user','Do you want to delete this user?')){
+            if(await questionMessage('Eliminar usuario','Quieres eliminar este usuario?')){
                 window.location.href = "/Mexico/"+id+"/delate-user";
             }
         }
 
         async function edit_department(id){
             window.location.href = "/Mexico/"+id+"/edit-user";
+        }
+
+        function search_official(){
+            var inputUser = document.getElementsByName("usernameSearch")[0];
+            console.log(inputUser);
+            var username = inputUser.value;
+            if (username === "") {
+
+            }else{
+                window.location.href = "/Mexico/users/"+username;
+            }
         }
     </script>
     <script src="/js/other.js"></script>

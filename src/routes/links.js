@@ -113,7 +113,6 @@ async function add_a_new_user(user){
         parseInt(user.level)
     ] 
     values.password=await helpers.encrytPassword(user.password);
-    console.log(values);
     //we will see if can add the user to the database
     try{
         await pool.query(queryText, values);
@@ -127,8 +126,16 @@ async function add_a_new_user(user){
 
 router.get('/users',isLoggedIn,async(req,res)=>{
     const users=await search_users();
-    console.log(users)
-    res.render('links/Dashboard/police',{users});
+    const user=[];
+    res.render('links/Dashboard/police',{users,user});
+});
+
+router.get('/users/:username',isLoggedIn,async(req,res)=>{
+    const users=await search_users();
+    const {username}=req.params;
+    const user=await search_user_with_username(username);
+    console.log(user)
+    res.render('links/Dashboard/police',{users,user});
 });
 
 async function search_users(){
@@ -143,11 +150,22 @@ async function search_users(){
     }
 };
 
+async function search_user_with_username(username){
+    var queryText = 'SELECT * FROM usuario WHERE username = ?';
+    var values = [username];
+
+    try {
+        return await pool.query(queryText, values);
+    } catch (error) {
+        console.error('Error al buscar usuario:', error);
+        return [];
+    }
+};
+
 router.get('/:id/delate-user',async(req,res)=>{
     const {id}=req.params;
     var queryText = 'DELETE FROM usuario WHERE ID_usuario = ?';
     var values = [parseInt(id)];
-    console.log(values)
     try {
         await pool.query(queryText, values);
     } catch (error) {
