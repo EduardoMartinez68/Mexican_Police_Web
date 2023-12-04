@@ -150,6 +150,17 @@ async function search_users(){
     }
 };
 
+async function search_criminals(){
+    var queryText = 'SELECT * FROM detenido';
+    //we will see if can add the user to the database
+    try{
+        const criminals=await pool.query(queryText)
+        return criminals
+    } catch (error) {
+        return [];
+    }
+}
+
 async function search_user_with_username(username){
     var queryText = 'SELECT * FROM usuario WHERE username = ?';
     var values = [username];
@@ -163,22 +174,22 @@ async function search_user_with_username(username){
 };
 
 router.get('/:id/delate-user',async(req,res)=>{
-    const {id}=req.params;
-    var queryText = 'DELETE FROM usuario WHERE ID_usuario = ?';
-    var values = [parseInt(id)];
-    try {
-        await pool.query(queryText, values);
-    } catch (error) {
-        console.error('Error al eliminar el registro en la base de datos:', error);
+    if(req.user.ID_nivel==3){
+        const {id}=req.params;
+        var queryText = 'DELETE FROM usuario WHERE ID_usuario = ?';
+        var values = [parseInt(id)];
+        try {
+            await pool.query(queryText, values);
+        } catch (error) {
+            console.error('Error al eliminar el registro en la base de datos:', error);
+        }
     }
-
     res.redirect('/Mexico/users');
 });
 
 router.get('/:id/edit-user',isLoggedIn,async(req,res)=>{
     const {id}=req.params;
     const user=await get_user(id);
-    user.password=
     res.render('links/Dashboard/editUser',{user});
 });
 
@@ -270,9 +281,45 @@ router.get('/upload-criminals',isLoggedIn,(req,res)=>{
 
 ///-----------------------------------------------------------------------------------------users
 
-router.get('/criminals',isLoggedIn,(req,res)=>{
-    res.render('links/Dashboard/criminals');
+router.get('/criminals',isLoggedIn,async(req,res)=>{
+    criminals=await search_criminals();
+    criminal=[]
+    res.render('links/Dashboard/criminals',{criminals,criminal});
 });
+
+router.get('/:id/delate-criminal',isLoggedIn,async(req,res)=>{
+    const {id}=req.params;
+    var queryText = 'DELETE FROM detenido WHERE ID_detenido = ?';
+    var values = [parseInt(id)];
+    if(req.user.ID_nivel==3){
+        try {
+            await pool.query(queryText, values);
+        } catch (error) {
+            console.error('Error al eliminar el registro en la base de datos:', error);
+        }
+    }
+    res.redirect('/Mexico/criminals');
+});
+
+router.get('/search-criminals/:name',isLoggedIn,async(req,res)=>{
+    const {name}=req.params;
+    criminals=await search_criminals();
+    criminal=await search_criminal_with_username(name);
+    console.log(criminal)
+    res.render('links/Dashboard/criminals',{criminals,criminal});
+});
+
+async function search_criminal_with_username(name){
+    var queryText = 'SELECT * FROM detenido WHERE Nombre = ?';
+    var values = [name];
+
+    try {
+        return await pool.query(queryText, values);
+    } catch (error) {
+        console.error('Error al buscar usuario:', error);
+        return [];
+    }
+};
 
 router.get('/profile',isLoggedIn,(req,res)=>{
     res.render('links/Login/profile');

@@ -11,8 +11,9 @@
                         <table class="card-table">
                             <thead>
                                 <tr>
-                                    <th class="td1"><input type="text" placeholder="Busca a un criminal..." class="form-control" autofocus></th>
-                                    <th class="td2"><button class="btn-add" id="{{id}}" onclick="nextWeb('/from-criminals')">+</button></th>
+                                    <th class="td1"><input type="text" placeholder="Busca a un usuario..." class="form-control" name="usernameSearch" autofocus></th>
+                                    <th class="td2"><button class="btn" onclick="search_official()">🔎</button></th>
+                                    <th class="td2"><button class="btn-add" onclick="nextWeb(this.id+'/add-user')">+</button></th>
                                 </tr>
                             </thead>
                         </table>
@@ -20,7 +21,7 @@
                     
                     <div class="card-body card-information">
                         <!--this add all the product of the client-->
-                        {{#each saucers}}
+                        {{#each criminals}}
                             <div class="card mb-4">
                                 <div class="card-body">
                                     {{#if img}}
@@ -28,7 +29,9 @@
                                     {{else}}
                                         <img class="img-info" src="https://cdn-icons-png.flaticon.com/512/1022/1022333.png">
                                     {{/if}}
-                                    <strong>{{name}}</strong>
+                                    <strong>{{Nombre}}</strong>
+                                    <button id="{{ID_detenido}}" onclick="edit_department(this.id)"><i class="fi-department fi-sr-pencil"></i></button>
+                                    <button id="{{ID_detenido}}" onclick="delate_user(this.id)"><i class="fi-department fi-sr-trash"></i></button>
                                 </div>
                             </div>
                         {{/each}}
@@ -40,47 +43,67 @@
                 <!--This is the card for see the description of the product-->
                 <div class="card text-center mb-4">          
                     <div class="card-body">
-                        <label>barcode</label><br>
-                        <img class="img-description" src="https://cdn-icons-png.flaticon.com/512/1022/1022333.png"><br>
+                        {{#if criminal}}
+                            {{#each criminal}}
+                                <label>{{Alias}}</label><br>
+                                <img class="img-description" src="https://cdn-icons-png.flaticon.com/512/1022/1022333.png"><br>
 
-                        <strong>Name</strong>
-                        <strong>price $</strong>
-                        <br><br>
+                                <strong>{{Nombre}} {{Ap_paterno}} {{Ap_materno}}</strong>
+                                <br><br>
 
-                        <button class="card-btn-description"><i class="fi-item fi-rr-box-alt"></i>Order details</button>
-                        <button class="card-btn-description"><i class="fi-item fi-rr-time-past"></i>History</button>
-                        <button class="card-btn-description"><i class="fi-item fi-ts-box-open"></i>--PZA</button>
-                        <br><br>
+                                <button class="card-btn-description" id="{{ID_detenido}}" onclick="edit_department(this.id)"><i class="fi-item fi-rr-box-alt"></i>Edit</button>
+                                <button class="card-btn-description" id="{{ID_detenido}}" onclick="delate_user(this.id)"><i class="fi-item fi-rr-time-past"></i>Delate</button>
+                                <br><br><br>
+                                <div class="card mb-4">
+                                    <div class="card-bod">
+                                    <table class="my-table-price">
+                                    </table>
+                                    </div>
+                                </div>
+                            {{/each}}
+                        {{else}}
+                            <label>user</label><br>
+                            <img class="img-description" src="https://cdn-icons-png.flaticon.com/512/1022/1022333.png"><br>
 
-                        <label>
-                            Description 
-                        </label>
-                        <br>
-                        <strong>Price $:</strong>
+                            <strong>Name</strong>
+                            <br><br>
 
-                        <!--this is the different product price-->
-                        <br>
-                        <div class="card mb-4">
-                            <div class="card-bod">
-                            <table class="my-table-price">
-                                    <thead>
-                                        <tr>
-                                            <th><label>Tax included</label></th>
-                                            <th><label>without taxation</label></th>
-                                        </tr>
-                                        <tr>
-                                            <th><h6>$0</h6></th>
-                                            <th><h6>$0</h6></th>
-                                        </tr>
-                                    </thead>
+                            <button class="card-btn-description"><i class="fi-item fi-rr-box-alt"></i>Edit</button>
+                            <button class="card-btn-description"><i class="fi-item fi-rr-time-past"></i>Delate</button>
+                            <br><br><br>
+                            <div class="card mb-4">
+                                <div class="card-bod">
+                                <table class="my-table-price">
                                 </table>
+                                </div>
                             </div>
-                        </div>
+                        {{/if}}
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        async function delate_user(id){
+            if(await questionMessage('Eliminar criminal','Quieres eliminar a este criminal?')){
+                window.location.href = "/Mexico/"+id+"/delate-criminal";
+            }
+        }
 
+        async function edit_department(id){
+            window.location.href = "/Mexico/"+id+"/edit-user";
+        }
+
+        function search_official(){
+            var inputUser = document.getElementsByName("usernameSearch")[0];
+            console.log(inputUser);
+            var username = inputUser.value;
+            if (username === "") {
+
+            }else{
+                window.location.href = "/Mexico/search-criminals/"+username;
+            }
+        }
+    </script>
     <script src="/js/other.js"></script>
 </body>

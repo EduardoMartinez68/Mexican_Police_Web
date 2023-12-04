@@ -9,6 +9,7 @@ const { database } = require('./keys');
 
 const { v4: uuid } = require('uuid');
 const path=require('path');
+const pool=require('./database');
 
 //Initialization
 const app=express();
@@ -57,24 +58,29 @@ const { Console } = require('console');
 
 
 
-app.post('/Mexico/upload-criminals', upload.single('file'), (req, res) => {
+app.post('/Mexico/upload-criminals', upload.single('file'),async(req, res) => {
     try {
         // read the file XLSX from memory
         const workbook = xlsx.read(req.file.buffer, { type: 'buffer' });
 
         //we create the list of the data
         var listData=[]
+        var listDataForArrest=[]
         var listDataFamily=[]
         var listAnthropometricData=[]
+        var listCriminalAddress=[]
+        var listTrunkTattoos=[]
         var listFaceTattoos=[]
         var listLowerTattoos=[]
         var listTopTattoos=[]
         var listStoppedVehicle=[]
+        var listClothingDescription=[]
         var saveData=false;
+        
 
 
         // Iterar sobre cada hoja del libro
-        workbook.SheetNames.forEach(sheetName => {
+        workbook.SheetNames.forEach(sheetName =>{
             console.log(`Hoja: ${sheetName}`);
 
             // Obtener la hoja actual
@@ -102,10 +108,13 @@ app.post('/Mexico/upload-criminals', upload.single('file'), (req, res) => {
             var relation=""
 
             //variable house
-            var address=""
+            var street=""
+            var NOAbroad=""
+            var NOInterior=""
+            var domicileColony=""
 
             //data for arrest
-            id_arrested=0
+            id_arrested=get_id()
             reason_for_arrest=""
             place_of_detention=""
             cologne=""
@@ -255,6 +264,20 @@ app.post('/Mexico/upload-criminals', upload.single('file'), (req, res) => {
                     if (cellRef.startsWith("D")){
                         first_name=cellValue;
                     }
+
+                    if (cellRef.startsWith("Q")) {
+                        street = cellValue;
+                    }
+                    if (cellRef.startsWith("R")) {
+                        NOAbroad = cellValue;
+                    }
+                    if (cellRef.startsWith("S")) {
+                        NOInterior = cellValue;
+                    }
+                    if (cellRef.startsWith("T")) {
+                        domicileColony = cellValue;
+                    }
+
 
                     //from U4-Y4
                     if (cellRef.startsWith("U")){
@@ -517,14 +540,14 @@ app.post('/Mexico/upload-criminals', upload.single('file'), (req, res) => {
                     if (cellRef.startsWith("ED")){
                         //create a object with the data save
                         const personalInformation = [        
-                            id_store,
+                            id_arrested,
+                            324238,
                             last_name_f,
                             last_name_m,
-                            first_name,
-                            second_name,
+                            first_name+" "+second_name,
                             alias,
-                            birthday,
-                            age,
+                            new Date(Date.parse(birthday)),
+                            parseInt(age),
                             sex,
                             job,
                             statusCivil,
@@ -532,7 +555,16 @@ app.post('/Mexico/upload-criminals', upload.single('file'), (req, res) => {
                         ]
                         listData.push(personalInformation);
 
-                        const arrestData=[
+                        const criminalAddress = {
+                            id_arrested,
+                            street,
+                            NOAbroad,
+                            NOInterior,
+                            domicileColony
+                        };
+                        listCriminalAddress.push(criminalAddress);
+                        
+                        const dataForArrest = {
                             id_arrested,
                             reason_for_arrest,
                             place_of_detention,
@@ -543,23 +575,49 @@ app.post('/Mexico/upload-criminals', upload.single('file'), (req, res) => {
                             typeWeapon,
                             sizeWeapon,
                             accomplice
-                        ]
-
+                        };
+                        listDataForArrest.push(dataForArrest)
+                        
                         const dataFamily = [        
                             id_arrested,
                             nameMother,
                             nameFather,
                             nameSister,
                             nameBrother,
-                            statusCivil,
                             relation
                         ]
                         listDataFamily.push(dataFamily);
 
-
+                        const clothingDescription = {
+                            id_arrested,
+                            hat,
+                            hatColor,
+                            hatFeature,
+                            glasses,
+                            top,
+                            topColor,
+                            print,
+                            brand,
+                            sleeve,
+                            bottom,
+                            bottomColor,
+                            bottomFeature,
+                            backpack,
+                            backpackColor,
+                            backpackFeature,
+                            footwear,
+                            footwearColor,
+                            footwearFeature,
+                            waistBag,
+                            waistBagColor,
+                            helmet,
+                            helmetColor
+                        };
+                        listClothingDescription.push(clothingDescription);
+                        
                         const anthropometricData=[
                             id_arrested,
-                            height,
+                            parseFloat(height),
                             headShape,
                             hair,
                             colorHair,
@@ -633,6 +691,29 @@ app.post('/Mexico/upload-criminals', upload.single('file'), (req, res) => {
                         ];
                         listTopTattoos.push(topTattoos);
 
+                        const trunkTattoos = {
+                            id_arrested,
+                            leftNeck,
+                            rightNeck,
+                            centerNeck,
+                            leftNape,
+                            rightNape,
+                            centerNape,
+                            leftBack,
+                            rightBack,
+                            centerBack,
+                            leftChest,
+                            rightChest,
+                            centerChest,
+                            leftAbdomen,
+                            rightAbdomen,
+                            centerAbdomen,
+                            leftGroin,
+                            rightGroin,
+                            centerGroin
+                        };
+                        listTrunkTattoos.push(trunkTattoos)
+
                         const stoppedVehicle = [
                             id_arrested,
                             vehicleBrand,
@@ -666,8 +747,14 @@ app.post('/Mexico/upload-criminals', upload.single('file'), (req, res) => {
                         statusCivil=""
                         relation=""
 
+                        //reset home 
+                        street=""
+                        NOAbroad=""
+                        NOInterior=""
+                        domicileColony=""
+
                         //data detention
-                        id_arrested=0
+                        id_arrested=get_id()
                         reason_for_arrest=""
                         place_of_detention=""
                         cologne=""
@@ -798,9 +885,22 @@ app.post('/Mexico/upload-criminals', upload.single('file'), (req, res) => {
                 } 
             });
         });
-            
+
+        await add_data_excel(
+            listData,
+            listDataForArrest,
+            listDataFamily,
+            listAnthropometricData,
+            listCriminalAddress,
+            listTrunkTattoos,
+            listFaceTattoos,
+            listLowerTattoos,
+            listTopTattoos,
+            listStoppedVehicle,
+            listClothingDescription
+        );
       //console.log(`${listData}`);
-      console.log(`${listAnthropometricData[1]}`);
+      //console.log(`${listAnthropometricData[1]}`);
       res.redirect('/Mexico/upload-criminals');
     } catch (error) {
       console.error(error);
@@ -808,7 +908,67 @@ app.post('/Mexico/upload-criminals', upload.single('file'), (req, res) => {
     }
   });
 
-  
+async function add_data_excel(
+    listData,
+    listDataForArrest,
+    listDataFamily,
+    listAnthropometricData,
+    listCriminalAddress,
+    listTrunkTattoos,
+    listFaceTattoos,
+    listLowerTattoos,
+    listTopTattoos,
+    listStoppedVehicle,
+    listClothingDescription
+) {
+    await add_list_data(listData,'INSERT INTO detenido VALUES (?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?)');
+    /*
+    await add_list_data(listDataFamily,'INSERT INTO datos_familiares_detenido VALUES (?, ?, ?,?,?,?,?)');
+    await add_list_data(listCriminalAddress,'INSERT INTO domicilio_detenido VALUES (?, ?, ?, ?, ?, ?)');
+    await add_list_data(listDataForArrest,'INSERT INTO detencion VALUES (?, ?, ?, ?, ?, ?, ?, ?,?,?,?)');
+    await add_list_data(listAnthropometricData,'INSERT INTO datos_antropometricos VALUES (?, ?, ?, ?, ?, ?, ?, ?,?,?,?)');
+    */
+    /*
+    await add_list_data(listTrunkTattoos,'INSERT INTO detenido VALUES (?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?)');
+    await add_list_data(listFaceTattoos,'INSERT INTO detenido VALUES (?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?)');
+    await add_list_data(listLowerTattoos,'INSERT INTO detenido VALUES (?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?)');
+    await add_list_data(listTopTattoos,'INSERT INTO detenido VALUES (?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?)');
+    await add_list_data(listStoppedVehicle,'INSERT INTO detenido VALUES (?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?)');
+    await add_list_data(listClothingDescription,'INSERT INTO detenido VALUES (?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?)');*/
+}
+
+async function add_list_data(list,queryText){
+    for (let i = 2; i < list.length; i++) {
+        const data= list[i];
+        const values = Object.values(data);
+        try{
+            await pool.query(queryText, values);
+        } catch (error) {
+            console.error('Error to add the data:', error);
+        }
+    }
+}
+
+
+
+function get_id(){
+    // Obtener la fecha y hora actual
+    const now = new Date();
+
+    // Obtener los componentes de la fecha y hora
+    const year = now.getFullYear();
+    const month = now.getMonth() + 1; // Sumar 1 porque los meses van de 0 a 11
+    const day = now.getDate();
+    const hours = now.getHours();
+    //const minutes = now.getMinutes();
+    //const seconds = now.getSeconds();
+    const milliseconds = now.getMilliseconds();
+
+    // Formar un valor numérico único concatenando los componentes
+    //const numericValue = parseInt(`${year}${month}${day}${hours}${minutes}${seconds}${milliseconds}`);
+    const numericValue = parseInt(`${day}${hours}${milliseconds}`);
+    return numericValue+Math.floor(Math.random() * 1000) + 1;
+}
 
 //Global variables
 app.use((req,res,next)=>{
